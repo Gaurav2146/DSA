@@ -4,21 +4,44 @@ class Heap {
     constructor() { }
 
     buildHeap(array: number[]) {
+
         let totalNumberOfNodes = array.length;
         let maximumIndexOfParentNodes = Math.floor(totalNumberOfNodes / 2) - 1;
 
-        console.log("maximumIndexOfParentNodes", maximumIndexOfParentNodes)
-
         for (let i = maximumIndexOfParentNodes; i >= 0; i--) {
-            this.heapify(array, i);
+            this.heapifyOrPerculateDown(array, i);
         }
+
     }
 
     getMax(array: number[]): number {
         return array[0];
     }
 
-    heapify(array: number[], index: number) {
+    add(array: number[], data: number) {
+        array.push(data);
+        this.perculateUp(array, array.length - 1);
+    }
+
+    extractMax(array: number[]): number {
+        let max = array[0];
+        array[0] = array[array.length - 1];
+        array.pop();
+        this.heapifyOrPerculateDown(array, 0);
+        return max;
+    }
+
+    perculateUp(array: number[], index: number) {
+        let parent = Math.ceil((index + 1) / 2) - 1;
+        if (parent > 0 && array[index] > array[parent]) {
+            let temp = array[index];
+            array[index] = array[parent];
+            array[parent] = temp;
+            this.perculateUp(array, parent)
+        }
+    }
+
+    heapifyOrPerculateDown(array: number[], index: number) {
 
         let leftChild: number = index * 2 + 1;
         let rightChild: number = index * 2 + 2;
@@ -30,21 +53,21 @@ class Heap {
                 let temp = array[leftChild];
                 array[leftChild] = array[index];
                 array[index] = temp;
-                this.heapify(array, leftChild)
+                this.heapifyOrPerculateDown(array, leftChild)
 
             } else if (array[leftChild] > array[rightChild]) {
 
                 let temp = array[leftChild];
                 array[leftChild] = array[index];
                 array[index] = temp;
-                this.heapify(array, leftChild)
+                this.heapifyOrPerculateDown(array, leftChild)
             }
             else {
 
                 let temp = array[rightChild];
                 array[rightChild] = array[index];
                 array[index] = temp;
-                this.heapify(array, rightChild)
+                this.heapifyOrPerculateDown(array, rightChild)
             }
         }
     }
@@ -52,9 +75,13 @@ class Heap {
 
 let heap = new Heap();
 let array = [3, 1114, 5, 61111, 33, 145, 32, 1231111]
-heap.buildHeap(array);
-console.log(array, "array");
+heap.buildHeap(array);//O(n)
 
+while (array.length > 0) {
+    // console.log(array, "Heap");
+    let max = heap.extractMax(array);
+    console.log(max, "max element extracted");
+}
 
 //                     3
 //                 /       \
