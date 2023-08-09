@@ -90,3 +90,14 @@ while (array.length > 0) {
 //              61111 33  145  32
 //                /
 //            1231111
+
+
+
+// Lift algorithm
+//1.Which lift to assign (already done)
+
+//2.Once Assigned how lift will maintain floor details
+//Answer - If user want to go in upward direction then destination floor will be pushed in min heap.
+//If user want to go in downward direction then destination floor will be pushed in max heap.
+//Lift will use min heap if it is moving in upward direction.
+//Lift will use max heap if it is moving in downward direction.
