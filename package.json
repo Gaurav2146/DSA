@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "ts-node ./Heap/Heap.ts"
+    "start": "ts-node ./Metrix/spital.ts"
   },
   "author": "",
   "license": "ISC",
