@@ -1,11 +1,9 @@
 
 //===================================== BFS ================================================================
-//Create Adjecency list for your graph.
-//Create a parent map which will store the parent node data of each node.
-//Create a visited node map which will tell if the node is visisted or not.
 
-// 1. If we find any adjecent node which is already visited but it is not the parent node then it's a cycle.
-// 2. If we find any adjecent node which is vsited but it is the parent node then we will ignore that node.
+
+
+
 //===========================================================================================================
 
 //===================================== DFS =================================================================
