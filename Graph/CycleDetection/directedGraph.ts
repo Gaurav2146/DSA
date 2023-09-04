@@ -1,9 +1,9 @@
 
 //===================================== BFS ================================================================
-
-
-
-
+// Find Topological sorting of graph using kahan's algorithm.
+// If the size of resulted topological sort is equal to total number of vertices in graph then you have
+// calculated a valid topological sort and threfore graph do not contains cycles.
+// If it is not same then graph contains cycle.
 //===========================================================================================================
 
 //===================================== DFS =================================================================
