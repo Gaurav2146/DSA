@@ -10,8 +10,8 @@
 // 7. While returning from DFS call update the Low value of parent also according the formula
 //    Math.min(Low(child),Low(Node));
 // 8. If at any point of time we found out that Low(Child) > Dis[Node] then there is a bridge from Node to
-//    child and Node.
-// 9. In the above case, Node will be considered as articulation point if Node is not parent and if it is
-//    parent then the Node should have more than one child. i.e number of adjecent node should be greater
+//    child.
+// 9. In the above case, Node will be considered as articulation point if Node is not root and if it is
+//    root then the Node should have more than one child. i.e number of adjecent node should be greater
 //    than 1.
 //========================================================================================================
