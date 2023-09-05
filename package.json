@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "ts-node ./Graph/Creation/adjecencyMetrix.ts"
+    "start": "ts-node ./Graph/Questions/wordLadder.ts"
   },
   "author": "",
   "license": "ISC",
