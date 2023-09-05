@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "ts-node ./Graph/Questions/wordLadder.ts"
+    "start": "ts-node ./Recursion/allPossibleCombinationOfLetter.ts"
   },
   "author": "",
   "license": "ISC",
