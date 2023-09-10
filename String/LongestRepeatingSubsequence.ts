@@ -9,7 +9,7 @@ class Solution {
             let arr:number[] = [];
 
             for (let j = 0; j < str.length; j++) {
-                arr.push(0);
+                arr.push(-1);
             }
 
             dp.push(arr);
@@ -24,7 +24,7 @@ class Solution {
             return 0;
         }
 
-        if (dp[n][m] != 0) {
+        if (dp[n][m] != -1) {
             return dp[n][m];
         }
 
