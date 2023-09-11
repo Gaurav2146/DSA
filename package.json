@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "ts-node ./Recursion/allPossibleCombinationOfLetter.ts"
+    "start": "ts-node ./String/largestPelindrome.ts"
   },
   "author": "",
   "license": "ISC",
