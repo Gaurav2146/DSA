@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "ts-node ./String/largestPelindrome.ts"
+    "start": "ts-node ./String/check_If_s1_is_subsequence_of_s2.ts"
   },
   "author": "",
   "license": "ISC",
