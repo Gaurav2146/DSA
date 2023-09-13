@@ -46,7 +46,9 @@ function minCut(s: string): number {
 
             if (palindomDP[i][j] == 0) {
                 DP[i][j] = 0;
-            } else {
+            }
+            else if (DP[i][j] == Number.MAX_SAFE_INTEGER) {
+
                 let min = Number.MAX_SAFE_INTEGER;
 
                 for (let k = i; k < j; k++) {
