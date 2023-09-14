@@ -15,7 +15,6 @@
             DP.push(arr);
        }
    
-       // return this.calculate(A,0,A.length-1,1,DP)
        return calculate(A,0,A.length-1,DP)[0]
    
        }
@@ -33,6 +32,11 @@
            if (str[i] == "F") {
                return [0, 1];
            }
+       }
+
+       if(DP[i][j][0] != -1 && DP[i][j][1] != -1)
+       {
+           return DP[i][j];
        }
    
        let number_of_ways = [0, 0];
@@ -67,7 +71,7 @@
        number_of_ways[0] = number_of_ways[0]%1003;
        number_of_ways[1] = number_of_ways[1]%1003;
 
-       return number_of_ways;
+       return DP[i][j] = number_of_ways;
    }
       
    
