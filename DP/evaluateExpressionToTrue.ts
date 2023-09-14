@@ -23,6 +23,8 @@ function calculate(str: string, i: number, j: number) {
     let number_of_ways = [0, 0];
 
     for (let k = i; k < j - 1; k = k + 2) {
+
+
         let temp1 = calculate(str, i, k);
         let temp2 = calculate(str, k + 2, j);
 
