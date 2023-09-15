@@ -85,3 +85,66 @@
 
 // console.log(scrambledString.isScramble("coder", "ocred"));
 
+function isScramble(s1: string, s2: string): boolean {
+    return new ScrambledString().isScramble(s1, s2);
+};
+
+class ScrambledString {
+    found: boolean = false;
+    isScramble(S1: string, S2: string): boolean {
+        //code here
+
+        let map = new Map();
+
+        return this.calculate(S1, S2, map);
+
+    }
+
+    calculate(str1: string, str2: string, map: Map<string, boolean>): boolean {
+
+        if (str1 == str2) {
+            return true;
+        }
+
+        if (str1.length == 1) {
+            return false;
+        }
+
+        if (str1.length == 2) {
+            if (str1[0] == str2[1] && str1[1] == str2[0]) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+
+        if (map.has(str1 + "-" + str2)) {
+            let res = map.get(str1 + "-" + str2);
+            if (res != undefined) {
+                return res;
+            }
+        }
+
+        let result = false;
+
+        let i = 0;
+        let j = str1.length - 1;
+
+        for (let k = i; k < j; k++) {
+
+            let res1 = this.calculate(str1.substring(i, k + 1), str2.substring(i, k + 1), map) &&
+                this.calculate(str1.substring(k + 1, j + 1), str2.substring(k + 1, j + 1), map)
+
+            let res2 = this.calculate(str1.substring(i, k + 1), str2.substring(j - k, j + 1), map) &&
+                this.calculate(str1.substring(k + 1, j + 1), str2.substring(i, j - k), map)
+
+            if (res1 || res2) {
+                result = true;
+                break;
+            }
+        }
+        map.set(str1 + "-" + str2, result);
+        return result;
+    }
+}
