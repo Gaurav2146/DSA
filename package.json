@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "ts-node ./DP/ScrambledString.ts"
+    "start": "ts-node ./Array/SubArraySum/SubArraySumWhichIsPerfectSquare.ts"
   },
   "author": "",
   "license": "ISC",
