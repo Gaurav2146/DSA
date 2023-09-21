@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "ts-node ./Stack/infixToPostfix.ts"
+    "start": "ts-node ./Stack/PrevSmallestElement.ts"
   },
   "author": "",
   "license": "ISC",
