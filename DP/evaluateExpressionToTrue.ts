@@ -74,3 +74,13 @@ function calculate(str: string, i: number, j: number, DP: number[][][]) {
 
 console.log(cnttrue("F|T^T&F|T^T^T^F|F&F^F|T^F^T&T^F|F^T&F&F|T|T^T^F^F^F&F^T^F&T|T^T^T&T&T|T|T^T^F|F&F|F^F|T"));
 
+<<<<<<< HEAD
+       return DP[i][j] = number_of_ways;
+   }
+      
+   
+   console.log(cnttrue("F|T^T&F|T^T^T^F|F&F^F|T^F^T&T^F|F^T&F&F|T|T^T^F^F^F&F^T^F&T|T^T^T&T&T|T|T^T^F|F&F|F^F|T"));
+   
+
+=======
+>>>>>>> 093c924d7fc94b9a94c24d0ae5b74519cb81c771

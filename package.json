@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "ts-node ./Object_Constructor/Object.assign.js"
+    "start": "ts-node ./Object_In_Javascript/Getters_and_Setters.js"
   },
   "author": "",
   "license": "ISC",

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Worker Fibonacci</title>
+</head>
+<body>
+    <input type="number" id="inputNumber" placeholder="Enter a number">
+    <button onclick="calculateFibonacci()">Calculate Fibonacci</button>
+    <button onclick="callMainTread()">Call Main Thread</button>
+    <button onclick="callWorkerTread()">Call Worker Thread</button>
+    <button onclick="calculate()">Calculate Fabonaci using Main Thread</button>
+    <div id="result"></div>
+
+    <script>
+        const worker = new Worker('worker.js');
+
+        worker.onmessage = function(event) {
+            console.log("Message received from worker thread which is " + event.data);
+            document.getElementById('result').textContent = `Fibonacci result: ${event.data}`;
+        }
+
+        function calculateFibonacci() {
+            const number = document.getElementById('inputNumber').value;
+            worker.postMessage(number);
+        }
+
+        function calculate()
+        {
+            console.log("Hi I am main Thread and I am Going To be busy Now");
+            calculateFabonaciUsingMainThread(45);
+            console.log("Hi I am main Thread and I am free Now");
+        }
+
+        function calculateFabonaciUsingMainThread(n)
+        {
+            if (n <= 1) return n;
+            return calculateFabonaciUsingMainThread(n - 1) + calculateFabonaciUsingMainThread(n - 2);
+        }
+
+        function callMainTread()
+        {
+            console.log("Hello I am main thread and I am free");
+        }
+
+        function callWorkerTread()
+            {
+                console.log("Worker thread called");
+                worker.postMessage(3);
+            }
+    </script>
+</body>
+</html>
