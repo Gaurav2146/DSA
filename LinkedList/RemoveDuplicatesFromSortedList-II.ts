@@ -32,18 +32,14 @@ function deleteDuplicatesII(head: ListNode | null): ListNode | null {
                     curr.next = null;
                     next = null;
                 }
-
             }
-
             if (prev) {
                 prev.next = next
             }
             else {
                 head = next;
             }
-
             curr = next;
-
             if (next) {
                 next = next.next;
             }
@@ -53,8 +49,6 @@ function deleteDuplicatesII(head: ListNode | null): ListNode | null {
             curr = next;
             next = next.next;
         }
-
     }
-
     return head;
 };
