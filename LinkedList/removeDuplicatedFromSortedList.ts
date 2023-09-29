@@ -31,17 +31,12 @@ function deleteDuplicates(head: ListNode | null): ListNode | null {
                     curr.next = null;
                     next = null;
                 }
-
             }
         }
-
         curr = next;
-
         if (next) {
             next = next.next;
         }
-
     }
-
     return head;
 };
