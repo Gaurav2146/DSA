@@ -1,4 +1,4 @@
-//User function Template for javascript
+
 
 /**
  * @param {Node} head
@@ -26,7 +26,6 @@ class RemoveDuplicatesFromUnsortedLinkedList {
         }
 
         let set = new Set();
-
         let prev = null;
         let curr = head;
         let next = head.next;
@@ -35,14 +34,11 @@ class RemoveDuplicatesFromUnsortedLinkedList {
 
             if (set.has(curr.data) == false) {
                 set.add(curr.data)
-
                 prev = curr;
                 curr = next;
-
                 if (next) {
                     next = next.next;
                 }
-
             }
             else {
                 if (prev) {
@@ -53,13 +49,11 @@ class RemoveDuplicatesFromUnsortedLinkedList {
                 }
                 prev.next = next;
                 curr = next;
-
                 if (next) {
                     next = next.next;
                 }
             }
         }
-
         return head;
     }
 }
