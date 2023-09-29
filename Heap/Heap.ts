@@ -3,6 +3,7 @@ class Heap {
 
     constructor() { }
 
+    //Time complexity of build heap is O(n)
     buildHeap(array: number[]) {
 
         let totalNumberOfNodes = array.length;
