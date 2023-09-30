@@ -101,3 +101,7 @@ while (array.length > 0) {
 //If user want to go in downward direction then destination floor will be pushed in max heap.
 //Lift will use min heap if it is moving in upward direction.
 //Lift will use max heap if it is moving in downward direction.
+
+
+
+
