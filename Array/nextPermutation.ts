@@ -39,7 +39,7 @@ class nextPermutation {
         let swapRightIndex = n - 1;
 
         for (let i = n - 1; i >= 1; i--) {
-            let flag = false;
+
             let swapIndex = i - 1;
 
             while (swapIndex >= 0) {
