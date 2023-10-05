@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "ts-node ./Array/AlternatePositiveAndNegativeNumbers.ts"
+    "start": "ts-node ./Array/AlternatePositiveAndNegativeNumbersByPreservingOrder.ts"
   },
   "author": "",
   "license": "ISC",
