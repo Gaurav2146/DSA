@@ -40,7 +40,7 @@
 // Expected Time Complexity: O(N)
 // Expected Auxiliary Space: O(1)
 
-// we can not preserve the order if size of negative and positive number is not equal in O(N).
+// we can not preserve the order in O(N) solution.
 
 
 class AlternatePositiveAndNegativeNumbers {
