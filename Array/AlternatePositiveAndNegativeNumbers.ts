@@ -82,9 +82,7 @@ class AlternatePositiveAndNegativeNumbers {
 
                     firstPositiveIndex = firstPositiveIndex + 1;
                 }
-
             }
-
         }
         else {
 
@@ -109,7 +107,6 @@ class AlternatePositiveAndNegativeNumbers {
 
                     firstNegativeIndex = firstNegativeIndex + 1;
                 }
-
             }
         }
 
@@ -145,7 +142,6 @@ class AlternatePositiveAndNegativeNumbers {
         let low = 0;
         let mid = 0;
 
-
         while (low <= high) {
             if (arr[mid] >= 0) {
                 let temp = arr[low];
@@ -162,9 +158,7 @@ class AlternatePositiveAndNegativeNumbers {
             }
         }
     }
-
 }
-
 
 let arr = [-5, -2, 5, -2, 4, -7, 1, 8, 0, -8];
 
