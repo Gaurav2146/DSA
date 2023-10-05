@@ -73,7 +73,7 @@ class AlternatePositiveAndNegativeNumbers {
 
             for (let i = 0; i < n; i++) {
 
-                if (i % 2 == 0 && arr[i] < 0 && firstPositiveIndex < n) {
+                if (i % 2 != 0 && arr[i] < 0 && firstPositiveIndex < n) {
 
                     let temp = arr[firstPositiveIndex];
                     arr[firstPositiveIndex] = arr[i];
@@ -100,7 +100,7 @@ class AlternatePositiveAndNegativeNumbers {
 
             for (let i = 0; i < n; i++) {
 
-                if (i % 2 == 0 && arr[i] >= 0 && firstNegativeIndex < n) {
+                if (i % 2 != 0 && arr[i] >= 0 && firstNegativeIndex < n) {
 
                     let temp = arr[firstNegativeIndex];
                     arr[firstNegativeIndex] = arr[i];
