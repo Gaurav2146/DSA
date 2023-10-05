@@ -38,7 +38,7 @@
 // You don't need to read input or print anything. Your task is to complete the function rearrange() which takes the array of integers arr[] and n as parameters. You need to modify the array itself.
 
 // Expected Time Complexity: O(N)
-// Expected Auxiliary Space: O(N)
+// Expected Auxiliary Space: O(1)
 
 
 
@@ -79,57 +79,31 @@ class AlternatePositiveAndNegativeNumbers {
             }
         }
 
-        if (n % 2 != 0) {
 
-            if (negEle > posEle) {
+        if (negEle > posEle) {
 
-                let firstNegativeIndex = 0;
+            let firstNegativeIndex = 0;
 
-                for (let i = 0; i < n; i++) {
-                    if (arr[i] < 0 && i % 2 != 0) {
-                        firstNegativeIndex = i;
-                        break;
-                    }
+            for (let i = 0; i < n; i++) {
+                if (arr[i] < 0 && i % 2 != 0) {
+                    firstNegativeIndex = i;
+                    break;
                 }
+            }
 
-                for (let i = 0; i < n; i++) {
+            for (let i = 0; i < n; i++) {
 
-                    if (i % 2 == 0 && arr[i] >= 0 && firstNegativeIndex < n) {
+                if (i % 2 == 0 && arr[i] >= 0 && firstNegativeIndex < n) {
 
-                        let temp = arr[firstNegativeIndex];
-                        arr[firstNegativeIndex] = arr[i];
-                        arr[i] = temp;
+                    let temp = arr[firstNegativeIndex];
+                    arr[firstNegativeIndex] = arr[i];
+                    arr[i] = temp;
 
-                        firstNegativeIndex = firstNegativeIndex + 2;
-                    }
-
+                    firstNegativeIndex = firstNegativeIndex + 2;
                 }
 
             }
-            else {
 
-                let firstNegativeIndex = 0;
-
-                for (let i = 0; i < n; i++) {
-                    if (arr[i] < 0 && i % 2 == 0) {
-                        firstNegativeIndex = i;
-                        break;
-                    }
-                }
-
-                for (let i = 0; i < n; i++) {
-
-                    if (i % 2 != 0 && arr[i] >= 0 && firstNegativeIndex < n) {
-
-                        let temp = arr[firstNegativeIndex];
-                        arr[firstNegativeIndex] = arr[i];
-                        arr[i] = temp;
-
-                        firstNegativeIndex = firstNegativeIndex + 2;
-                    }
-
-                }
-            }
         }
         else {
 
@@ -152,10 +126,15 @@ class AlternatePositiveAndNegativeNumbers {
 
                     firstNegativeIndex = firstNegativeIndex + 2;
                 }
-            }
 
+            }
         }
 
         return arr;
     }
 }
+
+
+let arr = [-5, -2, 5, 2, 4, 7, 1, 8, 0, -8];
+
+console.log(new AlternatePositiveAndNegativeNumbers().rearrange(arr, arr.length));
