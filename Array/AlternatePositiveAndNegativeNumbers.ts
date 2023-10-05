@@ -45,6 +45,100 @@
 class AlternatePositiveAndNegativeNumbers {
     rearrange(arr: number[], n: number) {
 
+        let negEle = 0;
+        let posEle = 0;
+
+        for (let i = 0; i < n; i++) {
+            if (arr[i] >= 0) {
+                posEle++;
+            }
+            else {
+                negEle++;
+            }
+        }
+
+
+        if (negEle > posEle) {
+
+            this.movePositiveNumberToEnd(arr, n);
+
+            let firstPositiveIndex = 0;
+
+            for (let i = 0; i < n; i++) {
+                if (arr[i] >= 0 && i % 2 != 0) {
+                    firstPositiveIndex = i;
+                    break;
+                }
+            }
+
+            for (let i = 0; i < n; i++) {
+
+                if (i % 2 == 0 && arr[i] < 0 && firstPositiveIndex < n) {
+
+                    let temp = arr[firstPositiveIndex];
+                    arr[firstPositiveIndex] = arr[i];
+                    arr[i] = temp;
+
+                    firstPositiveIndex = firstPositiveIndex + 1;
+                }
+
+            }
+
+        }
+        else {
+
+            this.moveNegativeNumberToEnd(arr, n);
+
+            let firstNegativeIndex = 0;
+
+            for (let i = 0; i < n; i++) {
+                if (arr[i] < 0 && i % 2 != 0) {
+                    firstNegativeIndex = i;
+                    break;
+                }
+            }
+
+            for (let i = 0; i < n; i++) {
+
+                if (i % 2 == 0 && arr[i] >= 0 && firstNegativeIndex < n) {
+
+                    let temp = arr[firstNegativeIndex];
+                    arr[firstNegativeIndex] = arr[i];
+                    arr[i] = temp;
+
+                    firstNegativeIndex = firstNegativeIndex + 1;
+                }
+
+            }
+        }
+
+        return arr;
+    }
+
+    movePositiveNumberToEnd(arr: number[], n: number) {
+        //code here
+        let high = 0;
+        let low = n - 1;
+        let mid = 0;
+
+        while (high <= low) {
+            if (arr[mid] >= 0) {
+                let temp = arr[low];
+                arr[low] = arr[mid];
+                arr[mid] = temp;
+                low--;
+            }
+            else {
+                let temp = arr[high];
+                arr[high] = arr[mid];
+                arr[mid] = temp;
+                high++;
+                mid++;
+            }
+        }
+    }
+
+    moveNegativeNumberToEnd(arr: number[], n: number) {
         //code here
         let high = n - 1;
         let low = 0;
@@ -66,75 +160,11 @@ class AlternatePositiveAndNegativeNumbers {
                 high--;
             }
         }
-
-        let negEle = 0;
-        let posEle = 0;
-
-        for (let i = 0; i < n; i++) {
-            if (arr[i] >= 0) {
-                posEle++;
-            }
-            else {
-                negEle++;
-            }
-        }
-
-
-        if (negEle > posEle) {
-
-            let firstNegativeIndex = 0;
-
-            for (let i = 0; i < n; i++) {
-                if (arr[i] < 0 && i % 2 != 0) {
-                    firstNegativeIndex = i;
-                    break;
-                }
-            }
-
-            for (let i = 0; i < n; i++) {
-
-                if (i % 2 == 0 && arr[i] >= 0 && firstNegativeIndex < n) {
-
-                    let temp = arr[firstNegativeIndex];
-                    arr[firstNegativeIndex] = arr[i];
-                    arr[i] = temp;
-
-                    firstNegativeIndex = firstNegativeIndex + 2;
-                }
-
-            }
-
-        }
-        else {
-
-            let firstNegativeIndex = 0;
-
-            for (let i = 0; i < n; i++) {
-                if (arr[i] < 0 && i % 2 == 0) {
-                    firstNegativeIndex = i;
-                    break;
-                }
-            }
-
-            for (let i = 0; i < n; i++) {
-
-                if (i % 2 != 0 && arr[i] >= 0 && firstNegativeIndex < n) {
-
-                    let temp = arr[firstNegativeIndex];
-                    arr[firstNegativeIndex] = arr[i];
-                    arr[i] = temp;
-
-                    firstNegativeIndex = firstNegativeIndex + 2;
-                }
-
-            }
-        }
-
-        return arr;
     }
+
 }
 
 
-let arr = [-5, -2, 5, 2, 4, 7, 1, 8, 0, -8];
+let arr = [-5, -2, 5, -2, 4, -7, 1, 8, 0, -8];
 
 console.log(new AlternatePositiveAndNegativeNumbers().rearrange(arr, arr.length));
