@@ -49,3 +49,16 @@ function reverseListRecursive(head: ListNode | null): ListNode | null {
 
     return newHead;
 };
+
+
+
+
+
+ 
+  
+
+  
+  
+  
+  
+  
