@@ -39,11 +39,32 @@
 
 class BishuandSoldiers {
 
-    calculate() {
+    arrayOfSoldiers: number[] = [];
+    totalPowersum: number[] = [];
 
+    constructor(arrayOfSoldiers: number[]) {
+        this.arrayOfSoldiers = arrayOfSoldiers;
+        this.totalPowersum = new Array(arrayOfSoldiers.length);
+
+        this.arrayOfSoldiers.sort((a, b) => a - b);
+
+        this.totalPowersum[0] = this.arrayOfSoldiers[0];
+
+        for (let i = 1; i < arrayOfSoldiers.length; i++) {
+            this.totalPowersum[i] = this.totalPowersum[i - 1] + this.arrayOfSoldiers[i];
+        }
     }
 
-
+    calculate(BishuPower: number): { numberOfSoldiers: number, power: number } {
+        for (let i = 0; i < this.arrayOfSoldiers.length; i++) {
+            if (this.arrayOfSoldiers[i] == BishuPower) {
+                return { numberOfSoldiers: i + 1, power: this.totalPowersum[i] };
+            }
+            else if (this.arrayOfSoldiers[i] == BishuPower) {
+                return { numberOfSoldiers: i - 1, power: this.totalPowersum[i - 1] };
+            }
+        }
+    }
 }
 
-console.log(new BishuandSoldiers().calculate());
+console.log(new BishuandSoldiers([1, 2, 3, 4, 5, 6, 7]).calculate(3));
