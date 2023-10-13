@@ -60,7 +60,7 @@ class BishuandSoldiers {
             if (this.arrayOfSoldiers[i] == BishuPower) {
                 return { numberOfSoldiers: i + 1, power: this.totalPowersum[i] };
             }
-            else if (this.arrayOfSoldiers[i] == BishuPower) {
+            else if (this.arrayOfSoldiers[i] > BishuPower) {
                 return { numberOfSoldiers: i - 1, power: this.totalPowersum[i - 1] };
             }
         }
