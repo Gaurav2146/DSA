@@ -44,5 +44,4 @@ class MinimumSwapsToSort {
 }
 
 
-
 console.log(new MinimumSwapsToSort().minSwaps([7, 16, 14, 17, 6, 9, 5, 3, 18]));
