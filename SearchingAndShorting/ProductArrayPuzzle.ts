@@ -1,7 +1,6 @@
 class ProductArrayPuzzle {
     productExceptSelf(nums: number[], n: number) {
         //code here
-
         let leftProductArray = new Array(n);
         leftProductArray[0] = 1;
         let rightProductArray = new Array(n);

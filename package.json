@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "ts-node ./SearchingAndShorting/MinimumSwapsToSort.ts"
+    "start": "ts-node ./SearchingAndShorting/KthSmallestNumberAgain.ts"
   },
   "author": "",
   "license": "ISC",
