@@ -64,7 +64,14 @@ class BishuandSoldiers {
                 return { numberOfSoldiers: i, power: this.totalPowersum[i - 1] };
             }
         }
+
+        return {
+            numberOfSoldiers: this.arrayOfSoldiers.length,
+            power: this.totalPowersum[this.totalPowersum.length - 1]
+        };
     }
 }
 
-console.log(new BishuandSoldiers([1, 2, 3, 5, 15, 36, 57]).calculate(31));
+console.log(new BishuandSoldiers([1, 2, 3, 4, 5, 6, 7]).calculate(10));
+
+
