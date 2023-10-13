@@ -26,6 +26,9 @@ class MinimumSwapsToSort {
 			if (arr[i][0] != i) {
 				count++;
 				this.swap(arr, i, arr[i][0]);
+
+				//We will do this to check if after swapping the index of swapped element 
+				//is same as current index or not
 				i = i - 1;
 			}
 		}
