@@ -67,4 +67,4 @@ class BishuandSoldiers {
     }
 }
 
-console.log(new BishuandSoldiers([1, 2, 3, 4, 5, 6, 7]).calculate(3));
+console.log(new BishuandSoldiers([1, 2, 3, 5, 15, 36, 57]).calculate(31));
