@@ -32,6 +32,19 @@
 // Your Task :
 // You don't need to read input or print anything. Your task is to complete the function JobScheduling() which takes an integer N and an array of Jobs(Job id, Deadline, Profit) as input and returns the count of jobs and maximum profit as a list or vector of 2 elements.
 
+
+// Greedy approach for job sequencing problem:
+// Greedily choose the jobs with maximum profit first, by sorting the jobs in decreasing order of their profit. This would help to maximize the total profit as choosing the job with maximum profit for every time slot will eventually maximize the total profit
+
+// Follow the given steps to solve the problem:
+
+// Sort all jobs in decreasing order of profit. 
+// Iterate on jobs in decreasing order of profit.For each job , do the following : 
+// Find a time slot i, such that slot is empty and i < deadline and i is greatest.Put the job in 
+// this slot and mark this slot filled. 
+// If no such i exists, then ignore the job. 
+
+
 class JobSequencingProblem {
     //Function to find the maximum profit and the number of jobs done.
     JobScheduling(arr: [{ id: number, dead: number, profit: number }], n: number) {
