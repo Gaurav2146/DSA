@@ -44,34 +44,37 @@ class SubsetSums {
             s2[i] = input[i];
         }
 
-        let allSubsequenceSumforS1 = this.findSubsequenceSum(s1, 0);
+        let allSubsequenceforS1: number[][] = [];
 
-        let allSubsequenceSumforS2 = this.findSubsequenceSum(s2, 0);
+        this.findSubsequenceSum(s1, allSubsequenceforS1, 0);
 
+        let allSubsequenceSumforS2: number[][] = [];
+
+        this.findSubsequenceSum(s2, allSubsequenceSumforS2, 0);
+
+        console.log(allSubsequenceforS1, "allSubsequenceforS1");
+
+        console.log(allSubsequenceSumforS2, "allSubsequenceSumforS2");
 
     }
 
-    findSubsequenceSum(arr: number[], sum: number): number[] {
+    findSubsequenceSum(arr: number[], allSubsequence: number[][], index: number) {
 
-        if (arr.length == 0) {
-            return [];
+        if (index >= arr.length) {
+            return;
         }
 
-        let subsetSum = [sum];
+        let length = allSubsequence.length;
 
-        for (let i = 0; i < arr.length; i++) {
-
-            let new_sum = sum + arr[i];
-
-            subsetSum = [...subsetSum, ...this.findSubsequenceSum(arr.slice(i + 1), new_sum)];
-
-            subsetSum = [...subsetSum, ...this.findSubsequenceSum(arr.slice(i + 1), sum)];
-
+        for (let i = 0; i < length; i++) {
+            let subsequence = allSubsequence[i];
+            subsequence.push(arr[index]);
+            allSubsequence.push(subsequence);
         }
 
+        allSubsequence.push([arr[index]]);
 
-        return [];
-
+        this.findSubsequenceSum(arr, allSubsequence, index + 1);
     }
 
 }
