@@ -27,4 +27,16 @@
 // 1 + (-2) + 3 = 2
 
 
+class SubsetSums {
 
+    calculate(input: number[], lowerLimit: number, higherLimit: number) {
+
+
+
+
+    }
+
+
+}
+
+console.log(new SubsetSums().calculate([1, -2, 3], -1, 2));
