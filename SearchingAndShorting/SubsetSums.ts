@@ -40,14 +40,39 @@ class SubsetSums {
         for (let i = 0; i < sizeOfFistHalf; i++) {
             s1[i] = input[i];
         }
-        for (let i = sizeOfFistHalf; i <= input.length; i++) {
+        for (let i = sizeOfFistHalf; i < input.length; i++) {
             s2[i] = input[i];
         }
 
+        let allSubsequenceSumforS1 = this.findSubsequenceSum(s1, 0);
+
+        let allSubsequenceSumforS2 = this.findSubsequenceSum(s2, 0);
 
 
     }
 
+    findSubsequenceSum(arr: number[], sum: number): number[] {
+
+        if (arr.length == 0) {
+            return [];
+        }
+
+        let subsetSum = [sum];
+
+        for (let i = 0; i < arr.length; i++) {
+
+            let new_sum = sum + arr[i];
+
+            subsetSum = [...subsetSum, ...this.findSubsequenceSum(arr.slice(i + 1), new_sum)];
+
+            subsetSum = [...subsetSum, ...this.findSubsequenceSum(arr.slice(i + 1), sum)];
+
+        }
+
+
+        return [];
+
+    }
 
 }
 
