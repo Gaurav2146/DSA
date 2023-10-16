@@ -31,5 +31,15 @@
 // 450
 // 2100
 
+class TheDoubleHelixSPOJ {
 
+    calculate(arr1: number[], arr2: number[]) {
+
+
+
+
+
+    }
+
+}
 
