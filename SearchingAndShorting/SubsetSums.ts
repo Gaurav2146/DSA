@@ -52,9 +52,6 @@ class SubsetSums {
         allSubsequenceSumforS1.unshift(0);
         allSubsequenceSumforS2.unshift(0);
 
-        console.log(allSubsequenceSumforS1, "allSubsequenceSumforS1");
-        console.log(allSubsequenceSumforS2, "allSubsequenceSumforS2");
-
         let totalSubsetsWithSumInGivenRange = 0;
 
         for (let i = 0; i < allSubsequenceSumforS1.length; i++) {
