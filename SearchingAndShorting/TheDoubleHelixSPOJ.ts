@@ -35,11 +35,70 @@ class TheDoubleHelixSPOJ {
 
     calculate(arr1: number[], arr2: number[]) {
 
+        // arr1.sort((a, b) => a - b);
+        // arr2.sort((a, b) => a - b);
 
+        let totalSum = 0;
 
+        let arr1Sum = 0;
+        let arr2Sum = 0;
 
+        let i = 0;
+        let j = 0;
 
+        while (i < arr1.length && j < arr2.length) {
+
+            if (arr1[i] == arr2[j]) {
+
+                if (arr1Sum > arr2Sum) {
+                    totalSum = totalSum + arr1Sum;
+                }
+                else {
+                    totalSum = totalSum + arr2Sum;
+                }
+
+                totalSum = totalSum + arr1[i];
+
+                arr1Sum = 0;
+                arr2Sum = 0;
+
+                i++;
+                j++;
+            }
+
+            if (arr1[i] < arr2[j]) {
+                arr1Sum = arr1Sum + arr1[i];
+                i++;
+            }
+            else {
+                arr2Sum = arr2Sum + arr2[j];
+                j++;
+            }
+        }
+
+        console.log(i, "i", j, "j", arr1Sum, "arr1Sum", arr2Sum, "arr2Sum");
+        let remaining_sum = 0;
+
+        if (i == arr1.length) {
+
+            while (j != arr2.length) {
+                remaining_sum = remaining_sum + arr2[j];
+                j++;
+            }
+        }
+        else {
+            while (i != arr1.length) {
+                remaining_sum = remaining_sum + arr1[i];
+                i++;
+            }
+        }
+
+        console.log(remaining_sum, "remaining_sum");
+
+        totalSum = totalSum + Math.max(arr1Sum, arr2Sum, remaining_sum);
+        return totalSum;
     }
-
 }
 
+console.log(new TheDoubleHelixSPOJ().calculate([13, 3, 5, 7, 9, 20, 25, 30, 40, 55, 56, 57, 60, 62],
+    [11, 1, 4, 7, 11, 14, 25, 44, 47, 55, 57, 100]));
