@@ -26,4 +26,12 @@
 // 36
 // 1
 
+class RotiParatha {
 
+    calculate(parathas: number, cooks: number[]) {
+
+    }
+
+}
+
+console.log(new RotiParatha().calculate(10, [1, 2, 3, 4]));
