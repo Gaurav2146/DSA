@@ -31,6 +31,18 @@ class SubsetSums {
 
     calculate(input: number[], lowerLimit: number, higherLimit: number) {
 
+        let sizeOfFistHalf = Math.floor((input.length) / 2);
+        let sizeOfSecondHalf = input.length - sizeOfFistHalf;
+
+        let s1 = new Array(sizeOfFistHalf);
+        let s2 = new Array(sizeOfSecondHalf);
+
+        for (let i = 0; i < sizeOfFistHalf; i++) {
+            s1[i] = input[i];
+        }
+        for (let i = sizeOfFistHalf; i <= input.length; i++) {
+            s2[i] = input[i];
+        }
 
 
 
