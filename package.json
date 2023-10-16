@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "ts-node ./SearchingAndShorting/RotiParatha.ts"
+    "start": "ts-node ./SearchingAndShorting/SubsetSums.ts"
   },
   "author": "",
   "license": "ISC",
