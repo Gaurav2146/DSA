@@ -44,20 +44,47 @@ class SubsetSums {
             s2.push(input[i]);
         }
 
-        console.log(s1, "s1", s2, "s2");
-
         let allSubsequenceforS1: number[][] = [];
-
-        this.findSubsequenceSum(s1, allSubsequenceforS1, 0);
-
         let allSubsequenceSumforS2: number[][] = [];
 
+        this.findSubsequenceSum(s1, allSubsequenceforS1, 0);
         this.findSubsequenceSum(s2, allSubsequenceSumforS2, 0);
 
-        console.log(allSubsequenceforS1, "allSubsequenceforS1");
+        allSubsequenceforS1.unshift([0]);
+        allSubsequenceSumforS2.unshift([0]);
 
-        console.log(allSubsequenceSumforS2, "allSubsequenceSumforS2");
+        let totalSubsetsWithSumInGivenRange = 0;
 
+        for (let i = 0; i < allSubsequenceforS1.length; i++) {
+            let data = allSubsequenceforS1[i];
+            let sum = 0;
+            for (let j = 0; j < data.length; j++) {
+                sum = sum + data[j];
+            }
+            allSubsequenceforS1[i] = [sum];
+        }
+
+        for (let i = 0; i < allSubsequenceSumforS2.length; i++) {
+            let data = allSubsequenceSumforS2[i];
+            let sum = 0;
+            for (let j = 0; j < data.length; j++) {
+                sum = sum + data[j];
+            }
+            allSubsequenceSumforS2[i] = [sum];
+        }
+
+        for (let i = 0; i < allSubsequenceforS1.length; i++) {
+            for (let j = 0; j < allSubsequenceSumforS2.length; j++) {
+
+                if (allSubsequenceforS1[i][0] + allSubsequenceSumforS2[j][0] >= lowerLimit &&
+                    allSubsequenceforS1[i][0] + allSubsequenceSumforS2[j][0] <= higherLimit) {
+                    totalSubsetsWithSumInGivenRange++;
+                }
+
+            }
+        }
+
+        return totalSubsetsWithSumInGivenRange;
     }
 
     findSubsequenceSum(arr: number[], allSubsequence: number[][], index: number) {
