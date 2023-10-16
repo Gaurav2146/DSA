@@ -30,6 +30,15 @@ class RotiParatha {
 
     calculate(parathas: number, cooks: number[]) {
 
+
+
+
+    }
+
+    numberOfParathasCookedInGivenTime(cooks: number[]) {
+
+
+
     }
 
 }
