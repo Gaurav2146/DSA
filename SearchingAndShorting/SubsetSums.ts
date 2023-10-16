@@ -48,13 +48,13 @@ class SubsetSums {
 
         let allSubsequenceforS1: number[][] = [];
 
-        // this.findSubsequenceSum(s1, allSubsequenceforS1, 0);
+        this.findSubsequenceSum(s1, allSubsequenceforS1, 0);
 
         let allSubsequenceSumforS2: number[][] = [];
 
         this.findSubsequenceSum(s2, allSubsequenceSumforS2, 0);
 
-        // console.log(allSubsequenceforS1, "allSubsequenceforS1");
+        console.log(allSubsequenceforS1, "allSubsequenceforS1");
 
         console.log(allSubsequenceSumforS2, "allSubsequenceSumforS2");
 
