@@ -95,38 +95,4 @@ new ContructTree().printpreOrder(tree2);
 console.log();
 console.log("=== TREE 2 END ===");
 
-// export class Test {
-
-//     name: string = "GaUrav";
-
-//     print() {
-//         for (let i = 0; i < this.name.length; i++) {
-//             if (this.name.charCodeAt(i) <= 90 && this.name.charCodeAt(i) >= 65) {
-//                 console.log(this.name[i] + " is capital");
-//             }
-//         }
-
-//     }
-
-//     Rest(first: string, ...parameter: string[]) {
-//         console.log(parameter);
-//     }
-
-// }
-
-// new Test().print();
-// new Test().Rest("1", "2", "3");
-
-// let obj = {
-//     name: "RAHUL",
-//     print(roll: string) {
-//         console.log(this.name);
-//     }
-// }
-
-// let obj2 = {
-//     name: "Chetan"
-// }
-// obj.print.call(obj2, "1",);
-// obj.print.apply(obj2, ["1"]);
 
