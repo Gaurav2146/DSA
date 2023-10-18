@@ -4,60 +4,37 @@ class K_Sum_Path
   count = 0;
   sumK(root:TreeNode,K:number){
      //code here
-     
      let path:number[] = [];
-     
      this.solve(root,K,path);
-     
      return this.count;
   }
   
   solve(root:TreeNode,k:number,path:number[])
   {
+     
      if(root == null)
      {
          return;
      }
+     path.push(root.data);
      
-    
-    if(k > 0)
-    {
+     this.solve(root.left,k,path);
+     this.solve(root.right,k,path);
+     
       let j = path.length - 1;
-      let num = k - root.data;
+      let sum = 0;
          
-      while(j>=0 && num > 0 )
+      while(j >= 0)
       {
-        let path_value = path[j];
-        num = num - path_value;
+        sum = sum + path[j];
         j--;
+        
+        if(sum == k)
+        {
+          this.count++;
+        }
       }
-         
-       if(num == 0)
-       {
-         this.count++;
-       }
-    }
-    else
-    {
-        let j = path.length - 1;
-        let num = k - root.data;
-         
-        while(j>=0 && num < 0 )
-        {
-         let path_value = path[j];
-         num = num - path_value;
-         j--;
-        }
-         
-        if(num == 0)
-        {
-         this.count++;
-        }
-    }
-     
-     this.solve(root.left,k,[...path,root.data]);
-     
-     this.solve(root.right,k,[...path,root.data]);
-     
+      
+      path.pop();
   }
 } 
