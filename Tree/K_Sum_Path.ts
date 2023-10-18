@@ -11,15 +11,14 @@
  *     }
  * }
  */
-function pathSum(root: TreeNode | null, targetSum: number): number {
+   function pathSum(root: TreeNode | null, targetSum: number): number {
     let count = {count:0};
     solve(root,targetSum,[],count);
     return count.count;
-  };
+   };
   
     function solve(root : TreeNode | null,k:number,path:number[],count:{count:number})
     {
-       
        if(root == null)
        {
            return;
