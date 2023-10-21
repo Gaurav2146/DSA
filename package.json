@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "ts-node ./SearchingAndShorting/SubsetSums.ts"
+    "start": "ts-node ./Tree/AVL_TREE_DELETION.ts"
   },
   "author": "",
   "license": "ISC",

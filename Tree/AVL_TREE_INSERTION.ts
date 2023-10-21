@@ -1,17 +1,17 @@
 
-	// JavaScript program for insertion in AVL Tree 
-	class AVLNode { 
-        key:number;
-        height:number;
-        left:AVLNode;
-        right:AVLNode;
-		constructor(d:number) { 
-		this.key = d; 
-		this.height = 1; 
-		this.left = null; 
-		this.right = null; 
-		} 
-	} 
+	// // JavaScript program for insertion in AVL Tree 
+	// class AVLNode { 
+    //     key:number;
+    //     height:number;
+    //     left:AVLNode;
+    //     right:AVLNode;
+	// 	constructor(d:number) { 
+	// 	this.key = d; 
+	// 	this.height = 1; 
+	// 	this.left = null; 
+	// 	this.right = null; 
+	// 	} 
+	// } 
 
 	class AVLTree { 
         root:AVLNode
