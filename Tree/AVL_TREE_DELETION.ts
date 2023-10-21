@@ -114,7 +114,7 @@ if(balance > 1)
 {
   if(node.left && node.left.key < key)
   {
-   leftRotate(node.left);
+   node.left = leftRotate(node.left);
    return rightRotate(node);
   }
 }
@@ -124,7 +124,7 @@ if(balance < -1)
 {
   if(node.right && node.right.key > key)
   {
-  rightRotate(node.right);
+  node.right = rightRotate(node.right);
   return leftRotate(node);
   }
 }
@@ -139,6 +139,7 @@ if(balance < -1)
 }
 return node;
 }
+
 
 /* Given a non-empty binary search tree, return the 
 node with minimum key value found in that tree. 
