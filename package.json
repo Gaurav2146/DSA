@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "ts-node ./Tree/AVL_TREE_INSERTION_DELETION.ts"
+    "start": "ts-node ./Tree/Maximum_Sum_Non_Adjecent_Nodes.ts"
   },
   "author": "",
   "license": "ISC",
