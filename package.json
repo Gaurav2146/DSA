@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "ts-node ./Tree/AVL_TREE_DELETION.ts"
+    "start": "ts-node ./Tree/AVL_TREE_INSERTION_DELETION.ts"
   },
   "author": "",
   "license": "ISC",
