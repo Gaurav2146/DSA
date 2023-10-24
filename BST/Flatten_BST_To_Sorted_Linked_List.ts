@@ -15,18 +15,18 @@
 
      class Flatten_BST_To_Sorted_Linked_List
      {
+
+         head:BSTNode = new BSTNode(-1);
+         tail:BSTNode = new BSTNode(-1);
+
          flatten(root:BSTNode):BSTNode
          {
-             // Write your code here
-             let head = null;
-             let tail = null;
-     
-             this.preorder(root,head,tail);
+             this.preorder(root);
     
-             return head;
+             return this.head.right;
          }
      
-         preorder(root:BSTNode,head:BSTNode,tail:BSTNode)
+         preorder(root:BSTNode)
          {
      
              if(root==null)
@@ -34,25 +34,25 @@
                return;
              }
      
-             this.preorder(root.left ,head,tail);
+             this.preorder(root.left );
+
+             let right_node = root.right;
      
-             let rightNode = root.right;
-     
-             if(head == null)
+             if(this.head.data == -1)
              {
-                 head = root;
-                 tail = root;
+                 this.head.data = 1;
+                 this.head.right = root;
+                 this.tail = root;
              }
              else
              {
                 root.left = null;
-                root.right = null; 
-                tail.right = root;
-                tail = root;
+                root.right = null;
+                this.tail.right = root;
+                this.tail = root;
              }
      
-             this.preorder(rightNode ,head,tail);
-     
+             this.preorder(right_node);
          }
      }
 
@@ -64,4 +64,11 @@
      tree.right.left = new BSTNode(11);
      tree.right.right = new BSTNode(15);
 
-     console.log(new Flatten_BST_To_Sorted_Linked_List().flatten(tree))
+     let res = new Flatten_BST_To_Sorted_Linked_List().flatten(tree);
+
+     while(res!=null)
+     {
+        console.info(res.data);
+        res = res.right;
+     }
+
