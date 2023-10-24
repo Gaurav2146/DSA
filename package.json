@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "ts-node ./Tree/Maximum_Sum_Non_Adjecent_Nodes.ts"
+    "start": "ts-node ./BST/Flatten_BST_To_Sorted_Linked_List.ts"
   },
   "author": "",
   "license": "ISC",
