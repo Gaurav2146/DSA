@@ -6,7 +6,7 @@
  */
 
 class Rat_In_A_Maize {
-    findPath(m:number[][], n:number) {
+    findPath(m: number[][], n: number) {
         //code here
 
         let visited = new Array(n);
@@ -15,7 +15,7 @@ class Rat_In_A_Maize {
             visited[i] = new Array(n).fill(0);
         }
 
-        let result:string[] = [];
+        let result: string[] = [];
 
         let res = "";
 
@@ -29,7 +29,7 @@ class Rat_In_A_Maize {
     }
 
 
-    solve(visited:number[][], row:number, column:number, matrix:number[][], n:number, res:string, result:string[]) {
+    solve(visited: number[][], row: number, column: number, matrix: number[][], n: number, res: string, result: string[]) {
 
         if (row == n - 1 && column == n - 1) {
             result.push(res);
@@ -66,7 +66,7 @@ class Rat_In_A_Maize {
     }
 
 
-    isAllowed(visited:number[][], row:number, column:number, matrix:number[][], n:number) {
+    isAllowed(visited: number[][], row: number, column: number, matrix: number[][], n: number) {
 
         if (row < 0 || column < 0) {
             return false;
