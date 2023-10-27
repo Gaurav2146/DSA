@@ -128,4 +128,16 @@ let board = [["5","3",".",".","7",".",".",".","."],
 
 solveSudoku(board);
 
-console.log(board);
+let result = [];
+
+for(let i=0; i < board.length; i++)
+{
+    let res = board[i][0];
+    for(let j=1; j < board[0].length; j++)
+    {
+        res = res + " , " + board[i][j];
+    }
+    result.push(res);
+}
+
+console.log(result);
