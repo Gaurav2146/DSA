@@ -1,7 +1,7 @@
 /**
  Do not return anything, modify board in-place instead.
  */
-function solveSudoku(board: string[][]): string[][] {
+function solveSudoku(board: string[][]): void {
 
     let empty_space = [];
 
@@ -14,9 +14,6 @@ function solveSudoku(board: string[][]): string[][] {
     }
 
     solve(board, empty_space, 0);
-
-    return board;
-
 };
 
 function solve(board: string[][], empty_space: { row: number, column: number }[], index: number): boolean {
