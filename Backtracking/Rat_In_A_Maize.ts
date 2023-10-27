@@ -20,7 +20,9 @@ class Rat_In_A_Maize {
         let res = "";
 
         if (m[0][0] == 1) {
+            visited[0][0] = 1;
             this.solve(visited, 0, 0, m, n, res, result);
+            visited[0][0] = 0;
         }
 
         return result;
