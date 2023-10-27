@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "ts-node ./BST/Flatten_BST_To_Sorted_Linked_List.ts"
+    "start": "ts-node ./Backtracking/SudokuSolver.ts"
   },
   "author": "",
   "license": "ISC",
@@ -15,3 +15,4 @@
     "@types/node": "^20.5.7"
   }
 }
+
