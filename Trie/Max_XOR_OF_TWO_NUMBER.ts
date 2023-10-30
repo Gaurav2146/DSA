@@ -20,7 +20,7 @@ function findMaximumXOR(nums: number[]): number {
     let trieRoot = new Trie();
 
     for (let i = 0; i < nusBitsRepresentation.length; i++) {
-        insertIntoTrie(trieRoot, nusBitsRepresentation[i], 0);
+        insertIntoTrie(trieRoot,0, nusBitsRepresentation[i]);
     }
 
     let first_number;
