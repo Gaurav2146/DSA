@@ -1,21 +1,19 @@
 
-class Trie{
+class Trie {
 
-    value:string;
-    children:Trie[];
-    isEndOfString:boolean;
-   
-    constructor()
-    {
-       this.children = new Array(2).fill(null);
-       this.isEndOfString=false;
+    value: string;
+    children: Trie[];
+    isEndOfString: boolean;
+
+    constructor() {
+        this.children = new Array(2).fill(null);
+        this.isEndOfString = false;
     }
-   }
+}
 
 function findMaximumXOR(nums: number[]): number {
 
-    if(nums.length== (0||1))
-    {
+    if (nums.length == (0 || 1)) {
         return 0;
     }
 
@@ -38,18 +36,18 @@ function findMaximumXOR(nums: number[]): number {
     }
 
     for (let i = 0; i < nusBitsRepresentation.length; i++) {
-        insertIntoTrie(trieRoot,0, nusBitsRepresentation[i]);
+        insertIntoTrie(trieRoot, 0, nusBitsRepresentation[i]);
     }
 
     let first_number;
     let max = { max: Number.MIN_SAFE_INTEGER };
 
     for (let i = 0; i < nusBitsRepresentation.length - 1; i++) {
-        
+
         first_number = nums[i];
-        
+
         let not_value = findNegation(nusBitsRepresentation[i]);
-       
+
         searchTrie(trieRoot, not_value, 0, first_number, "", max);
     }
 
@@ -69,7 +67,7 @@ function searchTrie(root: Trie, input: string, index: number, first_number: numb
     if (input.length == output.length) {
 
         let data = convertBitToNumber(output);
-        
+
         let xor = data ^ first_number;
 
         if (xor > max.max) {
@@ -96,7 +94,7 @@ function searchTrie(root: Trie, input: string, index: number, first_number: numb
         if (lastFound == -1) {
             let data = convertBitToNumber(output);
             let xor = data ^ first_number;
-            
+
             if (xor > max.max) {
                 max.max = xor;
             }
@@ -125,29 +123,26 @@ function convertBitToNumber(input: string) {
     return res;
 }
 
-function insertIntoTrie(root:Trie,index:number,input:string) {
+function insertIntoTrie(root: Trie, index: number, input: string) {
 
-    if(index == input.length)
-    {
-       root.isEndOfString = true;
-       return;
+    if (index == input.length) {
+        root.isEndOfString = true;
+        return;
     }
 
     let element_to_insert = input[index];
 
     let index_to_insert = Number(element_to_insert);
 
-    if(root.children[index_to_insert] == null)
-    {
-       let node = new Trie();
-       node.value = element_to_insert;
-       root.children[index_to_insert] = node;
+    if (root.children[index_to_insert] == null) {
+        let node = new Trie();
+        node.value = element_to_insert;
+        root.children[index_to_insert] = node;
 
-       insertIntoTrie(root.children[index_to_insert],index + 1,input);
+        insertIntoTrie(root.children[index_to_insert], index + 1, input);
     }
-    else
-    {
-      insertIntoTrie(root.children[index_to_insert],index + 1,input);
+    else {
+        insertIntoTrie(root.children[index_to_insert], index + 1, input);
     }
 
 }
@@ -189,33 +184,25 @@ function findBitRepresentation(num: number): string {
     return res;
 }
 
-function printTrie(root:Trie,res:string,allResults:string[])
-{
-    if(root == null)
-    {
-      return;
+function printTrie(root: Trie, res: string, allResults: string[]) {
+    if (root == null) {
+        return;
     }
 
-   if(root.isEndOfString == true)
-   {
-    allResults.push(res);
-    return;
-   }
-
-   for(let i=0; i < root.children.length; i++)
-   {
-
-    if(root.children[i] && root.children[i].value)
-    {
-        printTrie(root.children[i],res+root.children[i].value,allResults);
+    if (root.isEndOfString == true) {
+        allResults.push(res);
+        return;
     }
-   }
+
+    for (let i = 0; i < root.children.length; i++) {
+
+        if (root.children[i] && root.children[i].value) {
+            printTrie(root.children[i], res + root.children[i].value, allResults);
+        }
+    }
 }
 
-
-
-
-console.log(findMaximumXOR([14,70,53,83,49,91,36,80,92,51,66,70]));
+console.log(findMaximumXOR([14, 70, 53, 83, 49, 91, 36, 80, 92, 51, 66, 70]));
 
 
 
