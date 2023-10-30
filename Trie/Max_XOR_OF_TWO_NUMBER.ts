@@ -30,7 +30,8 @@ function findMaximumXOR(nums: number[]): number {
         nusBitsRepresentation[i] = res;
     }
 
-    console.log(nusBitsRepresentation, "nusBitsRepresentation");
+    console.log(nums , "nums");
+    console.log(nusBitsRepresentation , "nusBitsRepresentation");
 
     let trieRoot = new Trie();
 
@@ -38,11 +39,15 @@ function findMaximumXOR(nums: number[]): number {
         insertIntoTrie(trieRoot, nusBitsRepresentation[i], 0);
     }
 
+    console.log(trieRoot , "trieRoot");
+
+    printTrie(trieRoot);
+
     let first_number;
     let max = { max: Number.MIN_SAFE_INTEGER };
 
-    for (let i = 1; i < nusBitsRepresentation.length; i++) {
-        first_number = nums[i - 1];
+    for (let i = 0; i < nusBitsRepresentation.length - 1; i++) {
+        first_number = nums[i];
         let not_value = findNegation(nusBitsRepresentation[i]);
         let found_Index = -1;
         let any_children = -1;
@@ -78,10 +83,18 @@ function searchTrie(root: Trie, input: string, index: number, first_number: numb
         return;
     }
 
-    if (index == input.length) {
+    if (input.length == output.length) {
 
         let data = convertBitToNumber(output);
+        
         let xor = data ^ first_number;
+
+        console.log("data is " + data + " and first_number is " + first_number);
+        
+        console.log( "input is " + input + " and output is " + output);
+
+        console.log(xor, "xor");
+
         if (xor > max.max) {
             max.max = xor;
         }
@@ -106,17 +119,18 @@ function searchTrie(root: Trie, input: string, index: number, first_number: numb
         if (lastFound == -1) {
             let data = convertBitToNumber(output);
             let xor = data ^ first_number;
+            console.log(xor, "xor");
             if (xor > max.max) {
                 max.max = xor;
             }
             return;
         }
         else {
-            searchTrie(root.children[lastFound], input, index + 1, first_number, output + input[lastFound], max);
+            searchTrie(root.children[lastFound], input, index + 1, first_number, output + root.children[lastFound].value, max);
         }
     }
     else {
-        searchTrie(root.children[found], input, index + 1, first_number, output + input[index], max);
+        searchTrie(root.children[found], input, index + 1, first_number, output + root.children[found].value, max);
     }
 }
 
@@ -130,9 +144,6 @@ function convertBitToNumber(input: string) {
         reference = reference * 2;
         len--;
     }
-
-    console.log(input, "input");
-    console.log(res, "res");
 
     return res;
 }
@@ -159,7 +170,7 @@ function insertIntoTrie(root: Trie, input: string, index: number) {
         }
     }
 
-    if (foundIndex >= 0 && input.length - 2 == index) {
+    if (foundIndex >= 0 && input.length - 1 == index) {
         root.children[foundIndex].wordEnd = root.children[foundIndex].wordEnd + 1;
     }
     else {
@@ -208,3 +219,26 @@ function findBitRepresentation(num: number): string {
     }
     return res;
 }
+
+function printTrie(root:Trie)
+{
+    console.log(root.value);
+    if(root.wordEnd > 0)
+    {
+        console.log("==========================================");
+        return;
+    }
+
+    for(let i=0; i < root.children.length; i++)
+    {
+        if(root.children[i])
+        {
+            printTrie(root.children[i]);
+        }
+    }
+}
+
+
+console.log(findMaximumXOR([14,70,53,83,49,91,36,80,92,51,66,70]));
+
+
