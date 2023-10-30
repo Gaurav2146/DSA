@@ -1,5 +1,5 @@
 
-function findMaximumXOR(nums: number[]): number {
+function findMaximumXOR(nums: number[],trieRoot:Trie): number {
 
     let result = findMaxValueAndMaxSizeOfBits(nums);
     let length_of_bits = result.length;
@@ -16,8 +16,6 @@ function findMaximumXOR(nums: number[]): number {
 
         nusBitsRepresentation[i] = res;
     }
-
-    let trieRoot = new Trie();
 
     for (let i = 0; i < nusBitsRepresentation.length; i++) {
         insertIntoTrie(trieRoot,0, nusBitsRepresentation[i]);
@@ -199,7 +197,15 @@ function printTrie(root:Trie,res:string,allResults:string[])
    }
 }
 
+let trieRoot = new Trie();
 
-console.log(findMaximumXOR([14,70,53,83,49,91,36,80,92,51,66,70]));
+findMaximumXOR([14,70,53,83,49,91,36,80,92,51,66,70],trieRoot);
+
+let Results:string[] = [];
+
+printTrie(trieRoot,"",Results);
+
+console.log(Results , "Results");
+
 
 
