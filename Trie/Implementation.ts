@@ -75,9 +75,16 @@ let trieOperation = new TrieOperations();
 let trie = new Trie();
 
 trieOperation.insert(trie,0,"11011");
+trieOperation.insert(trie,0,"11001");
+trieOperation.insert(trie,0,"01011");
+trieOperation.insert(trie,0,"00011");
+trieOperation.insert(trie,0,"01001");
+trieOperation.insert(trie,0,"00100");
+trieOperation.insert(trie,0,"11111");
+
 
 let allResults:string[] = [];
 
 trieOperation.printTrie(trie,"",allResults);
 
-console.log(trieOperation , "trieOperations");
+console.log(allResults , "allResults");
