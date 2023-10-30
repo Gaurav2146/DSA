@@ -1,4 +1,17 @@
 
+class Trie{
+
+    value:string;
+    children:Trie[];
+    isEndOfString:boolean;
+   
+    constructor()
+    {
+       this.children = new Array(2).fill(null);
+       this.isEndOfString=false;
+    }
+   }
+
 function findMaximumXOR(nums: number[],trieRoot:Trie): number {
 
     let result = findMaxValueAndMaxSizeOfBits(nums);

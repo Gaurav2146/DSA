@@ -1,15 +1,15 @@
-class Trie{
+// class Trie{
 
- value:string;
- children:Trie[];
- isEndOfString:boolean;
+//  value:string;
+//  children:Trie[];
+//  isEndOfString:boolean;
 
- constructor()
- {
-    this.children = new Array(2).fill(null);
-    this.isEndOfString=false;
- }
-}
+//  constructor()
+//  {
+//     this.children = new Array(2).fill(null);
+//     this.isEndOfString=false;
+//  }
+// }
 
 class TrieOperations
 {
