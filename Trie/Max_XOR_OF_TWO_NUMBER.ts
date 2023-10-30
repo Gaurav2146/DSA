@@ -12,7 +12,14 @@ class Trie{
     }
    }
 
-function findMaximumXOR(nums: number[],trieRoot:Trie): number {
+function findMaximumXOR(nums: number[]): number {
+
+    if(nums.length== (0||1))
+    {
+        return 0;
+    }
+
+    let trieRoot = new Trie();
 
     let result = findMaxValueAndMaxSizeOfBits(nums);
     let length_of_bits = result.length;
@@ -65,12 +72,6 @@ function searchTrie(root: Trie, input: string, index: number, first_number: numb
         
         let xor = data ^ first_number;
 
-        console.log("data is " + data + " and first_number is " + first_number);
-        
-        console.log( "input is " + input + " and output is " + output);
-
-        console.log(xor, "xor");
-
         if (xor > max.max) {
             max.max = xor;
         }
@@ -95,7 +96,7 @@ function searchTrie(root: Trie, input: string, index: number, first_number: numb
         if (lastFound == -1) {
             let data = convertBitToNumber(output);
             let xor = data ^ first_number;
-            console.log(xor, "xor");
+            
             if (xor > max.max) {
                 max.max = xor;
             }
@@ -211,15 +212,10 @@ function printTrie(root:Trie,res:string,allResults:string[])
    }
 }
 
-let trieRoot = new Trie();
 
-console.log( findMaximumXOR([14,70,53,83,49,91,36,80,92,51,66,70],trieRoot) );
 
-// let Results:string[] = [];
 
-// printTrie(trieRoot,"",Results);
-
-// console.log(Results , "Results");
+console.log(findMaximumXOR([14,70,53,83,49,91,36,80,92,51,66,70]));
 
 
 
