@@ -1,12 +1,11 @@
 class recursiveTrieNode
 {
-    value:number;
-    children:recursiveTrieNode[];
-    isEnd:boolean;
+    left_children:recursiveTrieNode|null;
+    right_children:recursiveTrieNode|null;
 
     constructor() {
-        this.children = new Array(2).fill(null);
-        this.isEnd = false;
+        this.left_children = null;
+        this.right_children = null;
     }
 }
 
@@ -19,20 +18,33 @@ class Recursive_Implementation
         //Checking if ith bit is 0 or 1.
         let bit:number = (num >> i) & 1;
 
-        if(root.children[bit] != null)
+        if(bit == 0)
         {
-            root = root.children[bit];
+            if(root.left_children != null)
+            {
+                root = root.left_children;
+            }
+            else
+            {
+                let node = new recursiveTrieNode();
+                root.left_children = node;
+                root = root.left_children;
+            }
         }
         else
         {
-            let node = new recursiveTrieNode();
-            node.value = bit;
-            root.children[bit] = node;
-            root = root.children[bit];
+            if(root.right_children != null)
+            {
+                root = root.right_children;
+            }
+            else
+            {
+                let node = new recursiveTrieNode();
+                root.right_children = node;
+                root = root.right_children;
+            }
         }
     }  
-
-     root.isEnd = true; 
    }
 
    findMaxXor(root:recursiveTrieNode , num:number):number
@@ -47,26 +59,26 @@ class Recursive_Implementation
 
         if(bit == 0)
         {
-          if(root.children[1] != null)
+          if(root.right_children != null)
           {
             xor = xor + (1 << i);
-            root = root.children[1];
+            root = root.right_children
           }
           else
           {
-            root = root.children[0];
+            root = root.left_children;
           }
         }
         else
         {
-            if(root.children[0] != null)
+            if(root.left_children != null)
             {
                 xor = xor + (1 << i);
-              root = root.children[0];
+              root = root.left_children;
             }
             else
             {
-              root = root.children[1];
+              root = root.right_children;
             }
         }
     }
