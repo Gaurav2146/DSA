@@ -94,55 +94,122 @@
 
 
 
-function longestDupSubstring(S:string) {
-    // convert string to char code array
-    const charArr = [...S].map(x => x.charCodeAt(0) - 'a'.charCodeAt(0));
-    const SIZE = S.length;
-    
-    // Binary Search
-    let low = 1, high = SIZE, maxLen = [0, 0];
-    
-    while(low <= high) {
-        const mid = Math.floor((low + high) / 2);
-        const result = rollingHash(mid);
-        
-        if(!result.length) high = mid-1;
+// function longestDupSubstring(S:string) {
+//     // convert string to char code array
+//     const charArr = [...S].map(x => x.charCodeAt(0) - 'a'.charCodeAt(0));
+//     const SIZE = S.length;
+
+//     // Binary Search
+//     let low = 1, high = SIZE, maxLen = [0, 0];
+
+//     while(low <= high) {
+//         const mid = Math.floor((low + high) / 2);
+//         const result = rollingHash(mid);
+
+//         if(!result.length) high = mid-1;
+//         else {
+//             maxLen = result;
+//             low = mid+1;
+//         }
+//     }
+
+//     return S.slice(maxLen[0], maxLen[1]);
+
+//     // Rolling hash algorithm
+//     function rollingHash(len:number) {
+//         const seen = new Set();
+//         const PRIME = 2**47 - 1;
+//         const BASE = 26;
+//         let MOST_SIG_DIGIT = 1;
+//         let hashKey = 0;
+
+//         for (let i = 0; i < len; i++) {
+//             // generate the most significat digit
+//             MOST_SIG_DIGIT = (MOST_SIG_DIGIT * BASE) % PRIME;
+//             // build the initial hash window
+//             hashKey = (hashKey * BASE + charArr[i]) % PRIME;
+//         }
+
+//         seen.add(hashKey);
+
+//         for (let i = len; i < SIZE; i++) {
+//             hashKey *= BASE;
+//             // remove the first char
+//             hashKey -= MOST_SIG_DIGIT * charArr[i-len] % PRIME;
+//             hashKey += PRIME;
+//             // add the next char
+//             hashKey = (hashKey + charArr[i]) % PRIME;
+
+//             if (seen.has(hashKey)) return [i-len+1, i+1];
+//             seen.add(hashKey);
+//         }
+//         return [];
+//     }
+// };
+
+
+function longestDupSubstring(S: string) {
+
+    let low = 0;
+    let high = S.length - 1;
+    let max_duplicate_string = "";
+
+    while (low <= high) {
+        let mid = Math.floor((low + high) / 2);
+
+        console.log(mid, "mid");
+
+        if (mid < 0) {
+            break;
+        }
+
+        let start = 0;
+        let end = mid;
+        let set = new Set();
+
+        while (end <= S.length - 1) {
+            let result = calculateRollingHash(S.substring(start, end + 1));
+
+            if (isNaN(result) == false && set.has(result) && mid + 1 > max_duplicate_string.length) {
+                max_duplicate_string = S.substring(start, end + 1);
+            }
+            else if (isNaN(result) == false) {
+                set.add(result);
+            }
+
+            start++;
+            end++;
+        }
+
+        if (max_duplicate_string.length == mid + 1) {
+            low = mid + 1;
+        }
         else {
-            maxLen = result;
-            low = mid+1;
+            high = mid - 1;
         }
+
     }
-    
-    return S.slice(maxLen[0], maxLen[1]);
-    
-    // Rolling hash algorithm
-    function rollingHash(len:number) {
-        const seen = new Set();
-        const PRIME = 2**47 - 1;
-        const BASE = 26;
-        let MOST_SIG_DIGIT = 1;
-        let hashKey = 0;
-        
-        for (let i = 0; i < len; i++) {
-            // generate the most significat digit
-            MOST_SIG_DIGIT = (MOST_SIG_DIGIT * BASE) % PRIME;
-            // build the initial hash window
-            hashKey = (hashKey * BASE + charArr[i]) % PRIME;
-        }
 
-        seen.add(hashKey);
+    return max_duplicate_string;
 
-        for (let i = len; i < SIZE; i++) {
-            hashKey *= BASE;
-            // remove the first char
-            hashKey -= MOST_SIG_DIGIT * charArr[i-len] % PRIME;
-            hashKey += PRIME;
-            // add the next char
-            hashKey = (hashKey + charArr[i]) % PRIME;
-
-            if (seen.has(hashKey)) return [i-len+1, i+1];
-            seen.add(hashKey);
-        }
-        return [];
-    }
 };
+
+function calculateRollingHash(input: string): number {
+
+    let prime = 2 ** 53 - 1;
+
+    let len = input.length;
+
+    let res = 0;
+
+    let power_value = 1;
+
+    for (let i = len - 1; i >= 0; i--) {
+        let charCode = (input[i].charCodeAt(0) - "a".charCodeAt(0)) + 1;
+
+        power_value = (power_value * 26) % prime;
+
+        res = (res + (power_value * charCode) % prime) % prime;
+    }
+    return res % prime;
+}
