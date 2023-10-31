@@ -19,20 +19,26 @@ class Recursive_Implementation
         //Checking if ith bit is 0 or 1.
         let bit:number = (num >> i) & 1;
 
-        let node = new recursiveTrieNode();
-        node.value = bit;
-        root.children[bit] = node;
-        root = root.children[bit];
-    }
-       
+        if(root.children[bit] != null)
+        {
+            root = root.children[bit];
+        }
+        else
+        {
+            let node = new recursiveTrieNode();
+            node.value = bit;
+            root.children[bit] = node;
+            root = root.children[bit];
+        }
+    }  
+
      root.isEnd = true; 
    }
-
 
    findMaxXor(root:recursiveTrieNode , num:number):number
    {
 
-    let max_xor = 0;
+    let xor = 0;
 
     for(let i=31; i >=0; i--)
     {
@@ -43,7 +49,7 @@ class Recursive_Implementation
         {
           if(root.children[1] != null)
           {
-            max_xor = max_xor + 1 << i;
+            xor = xor + (1 << i);
             root = root.children[1];
           }
           else
@@ -55,7 +61,7 @@ class Recursive_Implementation
         {
             if(root.children[0] != null)
             {
-              max_xor = max_xor + 1 << i;
+                xor = xor + (1 << i);
               root = root.children[0];
             }
             else
@@ -65,8 +71,7 @@ class Recursive_Implementation
         }
     }
 
-    return max_xor;
-
+    return xor;
    }
 
    insertArray(nums:number[])
@@ -89,7 +94,7 @@ class Recursive_Implementation
    }
 }
 
-new Recursive_Implementation().insertArray([1,2]);
+console.log( "Recursive_Implementation", new Recursive_Implementation().insertArray([14, 70, 53, 83, 49, 91, 36, 80, 92, 51, 66, 70]));
 
 
 
