@@ -28,6 +28,12 @@ class Recursive_Implementation
      root.isEnd = true; 
    }
 
+
+   findMaxXor(root:recursiveTrieNode , num:number):number
+   {
+
+   }
+
    insertArray(nums:number[])
    {
     let trieNodeRecursive = new recursiveTrieNode();
@@ -36,6 +42,15 @@ class Recursive_Implementation
     {
        this.insert(trieNodeRecursive,num);
     }
+
+    let max_xor = Number.MIN_SAFE_INTEGER;
+
+    for(let num of nums)
+    {
+        max_xor = Math.max(max_xor , this.findMaxXor(trieNodeRecursive,num));
+    }
+
+    return max_xor;
    }
 }
 
