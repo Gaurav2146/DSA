@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "ts-node ./Trie/Max_XOR_OF_TWO_NUMBER.ts"
+    "start": "ts-node ./BIT_Manupulation/Max_XOR_OF_TWO_NUMBER.ts"
   },
   "author": "",
   "license": "ISC",
