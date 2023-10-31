@@ -32,6 +32,41 @@ class Recursive_Implementation
    findMaxXor(root:recursiveTrieNode , num:number):number
    {
 
+    let max_xor = 0;
+
+    for(let i=31; i >=0; i--)
+    {
+        //Checking if ith bit is 0 or 1.
+        let bit:number = (num >> i) & 1;
+
+        if(bit == 0)
+        {
+          if(root.children[1] != null)
+          {
+            max_xor = max_xor + 1 << i;
+            root = root.children[1];
+          }
+          else
+          {
+            root = root.children[0];
+          }
+        }
+        else
+        {
+            if(root.children[0] != null)
+            {
+              max_xor = max_xor + 1 << i;
+              root = root.children[0];
+            }
+            else
+            {
+              root = root.children[1];
+            }
+        }
+    }
+
+    return max_xor;
+
    }
 
    insertArray(nums:number[])
@@ -53,6 +88,8 @@ class Recursive_Implementation
     return max_xor;
    }
 }
+
+new Recursive_Implementation().insertArray([1,2]);
 
 
 
