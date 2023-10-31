@@ -154,6 +154,8 @@ function longestDupSubstring(S: string) {
     let high = S.length - 1;
     let max_duplicate_string = "";
 
+    let prime = 2 ** 47 - 1;
+
     while (low <= high) {
         let mid = Math.floor((low + high) / 2);
 
@@ -168,12 +170,13 @@ function longestDupSubstring(S: string) {
         let set = new Set();
 
         while (end <= S.length - 1) {
-            let result = calculateRollingHash(S.substring(start, end + 1));
+            let result = calculateRollingHash(S.substring(start, end + 1),prime);
 
-            if (isNaN(result) == false && set.has(result) && mid + 1 > max_duplicate_string.length) {
+            if (set.has(result) && mid + 1 > max_duplicate_string.length) {
                 max_duplicate_string = S.substring(start, end + 1);
             }
-            else if (isNaN(result) == false) {
+            else
+            {
                 set.add(result);
             }
 
@@ -194,9 +197,7 @@ function longestDupSubstring(S: string) {
 
 };
 
-function calculateRollingHash(input: string): number {
-
-    let prime = 2 ** 53 - 1;
+function calculateRollingHash(input: string,prime:number): number {
 
     let len = input.length;
 
@@ -205,11 +206,12 @@ function calculateRollingHash(input: string): number {
     let power_value = 1;
 
     for (let i = len - 1; i >= 0; i--) {
+        
         let charCode = (input[i].charCodeAt(0) - "a".charCodeAt(0)) + 1;
 
         power_value = (power_value * 26) % prime;
 
-        res = (res + (power_value * charCode) % prime) % prime;
+        res = res + (power_value * charCode) % prime;
     }
-    return res % prime;
+    return res;
 }
