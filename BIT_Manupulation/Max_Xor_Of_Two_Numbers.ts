@@ -47,23 +47,6 @@ function getMaxXor(root: TrieNode, num: number,MaxNumberOfBits:number): number {
         return maxXor;
 }
 
-function findMaximumXOR(nums: number[]): number{
-        const root: TrieNode = new TrieNode();
-        let maxXor: number = Number.MIN_SAFE_INTEGER;
-
-        let res = findMaxValueAndMaxSizeOfBits(nums);
-        
-        for (const num of nums) {
-            insert(root, num , res);
-        }
-
-        for (const num of nums) {
-            maxXor = Math.max(maxXor, getMaxXor(root, num, res));
-        }
-
-        return maxXor;
-}
-
 function findMaxValueAndMaxSizeOfBits(nums: number[]): number {
 
     let max = Number.MIN_SAFE_INTEGER;
@@ -84,6 +67,23 @@ function findBitRepresentation(num: number): number {
         num = Math.floor(num / 2);
     }
     return res.length;
+}
+
+function findMaximumXOR(nums: number[]): number{
+    const root: TrieNode = new TrieNode();
+    let maxXor: number = Number.MIN_SAFE_INTEGER;
+
+    let res = findMaxValueAndMaxSizeOfBits(nums);
+    
+    for (const num of nums) {
+        insert(root, num , res);
+    }
+
+    for (const num of nums) {
+        maxXor = Math.max(maxXor, getMaxXor(root, num, res));
+    }
+
+    return maxXor;
 }
 
 console.log( findMaximumXOR([14, 70, 53, 83, 49, 91, 36, 80, 92, 51, 66, 70]) );
