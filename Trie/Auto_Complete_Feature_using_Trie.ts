@@ -87,10 +87,10 @@ let auto_Complete_Feature_using_Trie = new Auto_Complete_Feature_using_Trie();
 
 let trie_node = new Trie_For_AutoComplete();
 
-auto_Complete_Feature_using_Trie.insert(trie_node,"abcd",0);
-auto_Complete_Feature_using_Trie.insert(trie_node,"abc",0);
-auto_Complete_Feature_using_Trie.insert(trie_node,"abct",0);
+auto_Complete_Feature_using_Trie.insert(trie_node,"banana",0);
+auto_Complete_Feature_using_Trie.insert(trie_node,"bnana",0);
+auto_Complete_Feature_using_Trie.insert(trie_node,"abanana",0);
 
 let Results:string[] = [];
-auto_Complete_Feature_using_Trie.search(trie_node,"ab",0,"",Results);
+auto_Complete_Feature_using_Trie.search(trie_node,"ban",0,"",Results);
 console.log(Results , "Results");
