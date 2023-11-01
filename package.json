@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "ts-node ./Trie/Recursive_Implementation.ts"
+    "start": "ts-node ./Trie/Auto_Complete_Feature_using_Trie.ts"
   },
   "author": "",
   "license": "ISC",

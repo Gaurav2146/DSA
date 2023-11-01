@@ -17,7 +17,7 @@ class Auto_Complete_Feature_using_Trie
 
     insert(root:Trie_For_AutoComplete,input:string,index:number)
     {
-         if(input.length > index)
+         if(input.length < index)
          {
             return;
          }
@@ -52,16 +52,12 @@ class Auto_Complete_Feature_using_Trie
             return;
         }
 
-        if(root.isEnd == true)
+        if(root.isEnd == true && input.length <= index)
         {
-            if(allResults.length < 3)
-            {
-                allResults.push(output);
-            }
-            return;
+            allResults.push(output);
         }
 
-        if(input.length < index)
+        if(input.length > index)
         {
             let index_to_insert = input[index].charCodeAt(0) - "a".charCodeAt(0);
 
@@ -75,7 +71,11 @@ class Auto_Complete_Feature_using_Trie
 
             for(let i=0; i < root.children.length; i++)
             {
-                this.search(root.children[i],input,index+1,output + root.children[i].value,allResults)
+                if(root.children[i])
+                {
+                    this.search(root.children[i],input,index+1,output + root.children[i].value,allResults);
+                }
+                
             }
 
         }
@@ -92,7 +92,5 @@ auto_Complete_Feature_using_Trie.insert(trie_node,"abc",0);
 auto_Complete_Feature_using_Trie.insert(trie_node,"abct",0);
 
 let Results:string[] = [];
-
 auto_Complete_Feature_using_Trie.search(trie_node,"ab",0,"",Results);
-
 console.log(Results , "Results");
