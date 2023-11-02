@@ -3,7 +3,7 @@ class TrieNode {
     right: TrieNode | null = null;
 }
 
- function insert(root: TrieNode, num: number,MaxNumberOfBits:number): void {
+ function Insert(root: TrieNode, num: number,MaxNumberOfBits:number): void {
         let curr: TrieNode = root;
 
         for (let i = MaxNumberOfBits; i >= 0; i--) {
@@ -47,7 +47,7 @@ function getMaxXor(root: TrieNode, num: number,MaxNumberOfBits:number): number {
         return maxXor;
 }
 
-function findMaxValueAndMaxSizeOfBits(nums: number[]): number {
+function FindMaxValueAndMaxSizeOfBits(nums: number[]): number {
 
     let max = Number.MIN_SAFE_INTEGER;
     for (let i = 0; i < nums.length; i++) {
@@ -56,10 +56,10 @@ function findMaxValueAndMaxSizeOfBits(nums: number[]): number {
         }
     }
 
-    return findBitRepresentation(max);
+    return FindBitRepresentation(max);
 }
 
-function findBitRepresentation(num: number): number {
+function FindBitRepresentation(num: number): number {
     let res = "";
     while (num != 0) {
         res = num % 2 + res;
@@ -69,14 +69,14 @@ function findBitRepresentation(num: number): number {
     return res.length;
 }
 
-function findMaximumXOR(nums: number[]): number{
+function FindMaximumXOR(nums: number[]): number{
     const root: TrieNode = new TrieNode();
     let maxXor: number = Number.MIN_SAFE_INTEGER;
 
-    let res = findMaxValueAndMaxSizeOfBits(nums);
+    let res = FindMaxValueAndMaxSizeOfBits(nums);
     
     for (const num of nums) {
-        insert(root, num , res);
+        Insert(root, num , res);
     }
 
     for (const num of nums) {
@@ -86,5 +86,5 @@ function findMaximumXOR(nums: number[]): number{
     return maxXor;
 }
 
-console.log( findMaximumXOR([14, 70, 53, 83, 49, 91, 36, 80, 92, 51, 66, 70]) );
+console.log( FindMaximumXOR([14, 70, 53, 83, 49, 91, 36, 80, 92, 51, 66, 70]) );
 
