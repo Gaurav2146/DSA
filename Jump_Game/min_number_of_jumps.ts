@@ -28,11 +28,8 @@
 // Brute Force
 
 function jump(nums: number[]): number {
-
     let min = { min: Number.MAX_SAFE_INTEGER };
-
     min_jumps(nums, 0, 0, min);
-
     return min.min;
 };
 
@@ -48,5 +45,4 @@ function min_jumps(nums: number[], output: number, index: number, min: { min: nu
     for (let i = 1; i <= nums[index]; i++) {
         min_jumps(nums, output + 1, index + i, min);
     }
-
 }
