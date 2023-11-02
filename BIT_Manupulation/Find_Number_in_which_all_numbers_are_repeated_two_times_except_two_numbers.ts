@@ -2,38 +2,39 @@
 
 class numberRepeatedTwoTimesexceptTwoNumbers {
 
-    findNumber(input: number[]) {
+    singleNumber(nums: number[]) {
+
         let result = 0;
-        for (let i = 0; i < input.length; i++) {
-            result = result ^ input[i];
+        for (let i = 0; i < nums.length; i++) {
+            result = result ^ nums[i];
         }
 
         let index = this.findFistLSB(result);
 
         let low = -1
-        let high = input.length;
+        let high = nums.length;
 
-        for (let i = 0; i < input.length; i++) {
-            if (this.numberWithBitSetAtGivenIndex(input[i], index) == true && low < i) {
+        for (let i = 0; i < nums.length; i++) {
+            if (this.numberWithBitSetAtGivenIndex(nums[i], index) == true && low < i) {
                 low++;
 
-                let temp = input[i];
+                let temp = nums[i];
 
-                input[i] = input[low];
+                nums[i] = nums[low];
 
-                input[low] = temp;
+                nums[low] = temp;
 
 
                 i--;
             }
-            else if (this.numberWithBitSetAtGivenIndex(input[i], index) == false && high > i) {
+            else if (this.numberWithBitSetAtGivenIndex(nums[i], index) == false && high > i) {
                 high--;
 
-                let temp = input[i];
+                let temp = nums[i];
 
-                input[i] = input[high];
+                nums[i] = nums[high];
 
-                input[high] = temp;
+                nums[high] = temp;
 
                 i--;
             }
@@ -42,7 +43,7 @@ class numberRepeatedTwoTimesexceptTwoNumbers {
         let first_number = 0;
 
         for (let i = 0; i <= low; i++) {
-            first_number = first_number ^ input[i];
+            first_number = first_number ^ nums[i];
         }
 
         let second_number = result ^ first_number;
@@ -70,4 +71,4 @@ class numberRepeatedTwoTimesexceptTwoNumbers {
         return index;
     }
 }
-console.log(new numberRepeatedTwoTimesexceptTwoNumbers().findNumber([1, 1, 2, 3, 4, 3, 4, 5]));
+console.log(new numberRepeatedTwoTimesexceptTwoNumbers().singleNumber([1, 1, 2, 3, 4, 3, 4, 5]));
