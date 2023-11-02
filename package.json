@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "ts-node ./BIT_Manupulation/Max_Xor_Of_Two_Numbers.ts"
+    "start": "ts-node ./BIT_Manupulation/Find_Number_in_which_all_numbers_are_repeated_two_times_except_one_number.ts"
   },
   "author": "",
   "license": "ISC",
