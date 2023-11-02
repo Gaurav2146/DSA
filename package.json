@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "ts-node ./BIT_Manupulation/Find_Number_in_which_all_numbers_are_repeated_two_times_except_two_numbers.ts"
+    "start": "ts-node ./Matrix/spital.ts"
   },
   "author": "",
   "license": "ISC",

@@ -49,8 +49,8 @@ export class SpiralMatrix {
 
 }
 
-//let obj = new SpiralMatrix([[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12], [13, 14, 15, 16]]);
-let obj = new SpiralMatrix([]);
+let obj = new SpiralMatrix([[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12], [13, 14, 15, 16]]);
+//let obj = new SpiralMatrix([]);
 // console.log("row", obj.metrix.length);
 // console.log("column", obj.metrix[0].length);
 obj.printSpiral();
