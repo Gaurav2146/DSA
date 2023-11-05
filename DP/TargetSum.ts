@@ -30,31 +30,33 @@
 // 0 <= sum(nums[i]) <= 1000
 // -1000 <= target <= 1000
 
-function findTargetSumWays(nums: number[], target: number): number {
-
-    let count = {count : 0};    
-    
-    solve(nums,target,0,0,count);
-    
-    return count.count;
-    
+function findTargetSumWays(nums: number[], target: number): number { 
+    let map = new Map<string,number>();
+    return solve(nums,target,0,0,map);
     };
     
-    function solve(nums: number[], target: number,index:number,output:number,count:{count:number})
+    function solve(nums: number[], target: number,index:number,output:number,map:Map<string,number>):number
     {
+       let key = index + "-" + output; 
+    
        if(target == output && index == nums.length)
        {
-           count.count = count.count + 1;
-           return;
+           return 1;
        }
     
-       if(index > nums.length)
+       if(index >= nums.length)
        {
-           return;
+           return 0;
        }
     
-       solve(nums, target,index+1,output - nums[index],count);
+       if(map.has(key))
+       {
+        return map.get(key);
+       }
     
-       solve(nums, target,index+1,output + nums[index],count);
-       
+       let res1 = solve(nums, target,index+1,output - nums[index],map);
+       let res2 = solve(nums, target,index+1,output + nums[index],map);
+    
+       map.set(key,res1 + res2) ;
+       return res1+res2;
     }
