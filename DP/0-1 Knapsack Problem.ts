@@ -39,55 +39,51 @@
  * @returns {number}
 */
 
-class Knapsack_Problemn {
+/**
+ * @param {number} W
+ * @param {number[]} wt
+ * @param {number[]} val
+ * @param {number} n
+ * @returns {number}
+*/
+
+class Knapsack_Problem {
     //Function to return max value that can be put in knapsack of capacity W.
     knapSack(W: number, wt: number[], val: number[], n: number) {
         // code here
         let map = new Map();
-        return this.solve(W, wt, val, n, 0, 0, map);
+        return this.solve(W, wt, val, n, 0, map);
     }
 
-    solve(W: number, wt: number[], val: number[], n: number, index: number,
-        quantity: number, map: Map<string, number>): number {
-        let key = index + "-" + W + "-" + quantity;
+    solve(W: number, wt: number[], val: number[], n: number, index: number, map: Map<string, number>) {
+        let key = index + "-" + W;
 
-        if (index >= n || W == 0) {
-            return quantity;
+        if (index == n || W == 0) {
+            return 0;
         }
 
-        if (W < 0) {
-            return 0;
+        if (index > n || W < 0) {
+            return Number.MIN_SAFE_INTEGER;
         }
 
         if (map.has(key)) {
             return map.get(key);
         }
 
-        let res1;
-        let res2;
+        let res1 = Number.MIN_SAFE_INTEGER;
 
-        let key1: string = (index + 1) + "-" + (W - wt[index]) + "-" + (quantity + val[index]);
+        let res2 = Number.MIN_SAFE_INTEGER;
 
-        if (map.has(key1)) {
-            res1 = map.get(key1);
+        if (W - wt[index] >= 0) {
+            res1 = val[index] + this.solve(W - wt[index], wt, val, n, index + 1, map);
         }
 
-        let key2 = (index + 1) + "-" + W + "-" + quantity;
+        res2 = this.solve(W, wt, val, n, index + 1, map);
 
-        if (map.has(key2)) {
-            res2 = map.get(key2);
-        }
+        let result = Math.max(res1, res2);
 
-        if (!res1) {
-            res1 = this.solve(W - wt[index], wt, val, n, index + 1, quantity + val[index], map);
-        }
+        map.set(key, result);
 
-        if (!res2) {
-            res2 = this.solve(W, wt, val, n, index + 1, quantity, map);
-        }
-
-        map.set(key, Math.max(res1, res2));
-
-        return Math.max(res1, res2);
+        return result;
     }
 }
