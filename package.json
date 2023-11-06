@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "ts-node ./Matrix/spital.ts"
+    "start": "ts-node ./DP/Partitions_with_GivenDifference.ts"
   },
   "author": "",
   "license": "ISC",
