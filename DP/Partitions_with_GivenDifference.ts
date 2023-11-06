@@ -92,4 +92,4 @@ class Partitions_with_GivenDifference{
     }
 }
 
-console.log( new Partitions_with_GivenDifference().countPartitions(5,1,[1,2,3,4,5]) )
+console.log( new Partitions_with_GivenDifference().countPartitions(19,3,[5, 2, 6, 4,2,5,3,12,15,23,43,1,98,43,77,56,47,81,72]) )
