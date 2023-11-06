@@ -66,5 +66,4 @@ class LongestCommonSubstringProblem {
 
         return max;
     }
-
 }
