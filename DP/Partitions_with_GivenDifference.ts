@@ -51,9 +51,7 @@ class Partitions_with_GivenDifference{
         }
         else
         {
-            
-           let DP = new Map<string,number>();   
-           
+           let DP = new Map<string,number>();     
            return this.solve(n, arr, num, 0,0,DP);
         }
     }
@@ -83,11 +81,8 @@ class Partitions_with_GivenDifference{
         }
         
         let res1 = this.solve(n, arr, number, index+1, result + arr[index],DP);
-        
         let res2 = this.solve(n, arr, number, index+1, result,DP);
-        
         DP.set(key , res1 + res2);
-        
         return res1 + res2;
     }
 }
