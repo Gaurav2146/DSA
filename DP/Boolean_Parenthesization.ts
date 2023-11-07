@@ -43,18 +43,25 @@ class Boolean_Parenthesization {
     countWays(S:string, n:number)
     {
         //your code here
+        let DP:[number,number][][] = new Array(n+1);
         
-        return this.solve(S,n,0,n-1)[0];
+        for(let i=0;i<n+1;i++)
+        {
+            DP[i] = new Array(n+1).fill([-1,-1]);
+        }
+        
+        return this.solve(S,n,0,n-1,DP)[0];
     }
     
-    solve(S:string, n:number, start:number, end:number)
+    solve(S:string, n:number, start:number, end:number,DP:[number,number][][]):[number,number]
     {
     
       if(start > end)
       {
           return [0,0];
       }
-            
+      
+      
       if(start == end)
       {
           if(S[start] == "T")
@@ -66,86 +73,21 @@ class Boolean_Parenthesization {
               return [0,1];
           }
       }
-
-      if(start+2 == end)
+      
+      if(DP[start][end][0]!=-1 && DP[start][end][1]!=-1)
       {
-        let a = S[start];
-        let b = S[end];
-
-        let operator = S[start+1];
-
-        if(operator == "^")
-        {
-
-             if(a == "T" && b =="F")
-             {
-               return [1,0];
-             }
-             else if(a == "T" && b =="T")
-             {
-                return [0,1];
-             }
-             else if(a == "F" && b =="T")
-             {
-                return [1,0];
-             }
-             else
-             {
-                return [0,1];
-             }
-             
-        }
-        else if(operator == "&")
-        {
-            if(a == "T" && b =="F")
-            {
-              return [0,1];
-            }
-            else if(a == "T" && b =="T")
-            {
-               return [1,0];
-            }
-            else if(a == "F" && b =="T")
-            {
-               return [0,1];
-            }
-            else
-            {
-               return [0,1];
-            }
-        }
-        else
-        {
-            if(a == "T" && b =="F")
-            {
-              return [1,0];
-            }
-            else if(a == "T" && b =="T")
-            {
-               return [1,0];
-            }
-            else if(a == "F" && b =="T")
-            {
-               return [1,0];
-            }
-            else
-            {
-               return [0,1];
-            }
-        }
-
+          return DP[start][end];
       }
       
       let number_of_ways_to_be_true = 0;
-      
       let number_of_ways_to_be_false = 0;
       
       for(let k=start; k < end-1; k = k+2)
       {
           
-          let res1 = this.solve(S, n, start, k);
+          let res1 = this.solve(S, n, start, k,DP);
           
-          let res2 = this.solve(S, n, k+2,end);
+          let res2 = this.solve(S, n, k+2,end,DP);
           
           
           if(S[k+1] == "^")
@@ -171,8 +113,9 @@ class Boolean_Parenthesization {
           }
       }
       
+      DP[start][end] = [ number_of_ways_to_be_true%1003, number_of_ways_to_be_false%1003 ];
+      
       return [ number_of_ways_to_be_true%1003, number_of_ways_to_be_false%1003 ];
-        
         
     }
 }
