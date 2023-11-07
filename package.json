@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "ts-node ./DP/Minimum_Number_Of_Partitions_Required_To_Covert_String_To_Palindrome.ts"
+    "start": "ts-node ./DP/Boolean_Parenthesization.ts"
   },
   "author": "",
   "license": "ISC",

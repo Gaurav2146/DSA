@@ -34,7 +34,7 @@ class Minimum_Number_Of_Partitions_Required_To_Covert_String_To_Palindrome {
         let min = Number.MAX_SAFE_INTEGER;
 
         for (let k = start; k < end; k++) {
-            
+
             let res = 1 + this.solve(s, start, k) + this.solve(s, k + 1, end);
 
             if (res < min) {
@@ -66,4 +66,4 @@ class Minimum_Number_Of_Partitions_Required_To_Covert_String_To_Palindrome {
 
 let ob = new Minimum_Number_Of_Partitions_Required_To_Covert_String_To_Palindrome();
 
- console.log( ob.calculateMinimumCutsRequires("nitinna") );
+console.log(ob.calculateMinimumCutsRequires("nitinna"));
