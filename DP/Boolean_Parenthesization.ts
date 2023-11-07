@@ -54,9 +54,7 @@ class Boolean_Parenthesization {
       {
           return [0,0];
       }
-      
-      console.log(S[start] , "S[start]");
-      
+            
       if(start == end)
       {
           if(S[start] == "T")
@@ -68,12 +66,81 @@ class Boolean_Parenthesization {
               return [0,1];
           }
       }
+
+      if(start+2 == end)
+      {
+        let a = S[start];
+        let b = S[end];
+
+        let operator = S[start+1];
+
+        if(operator == "^")
+        {
+
+             if(a == "T" && b =="F")
+             {
+               return [1,0];
+             }
+             else if(a == "T" && b =="T")
+             {
+                return [0,1];
+             }
+             else if(a == "F" && b =="T")
+             {
+                return [1,0];
+             }
+             else
+             {
+                return [0,1];
+             }
+             
+        }
+        else if(operator == "&")
+        {
+            if(a == "T" && b =="F")
+            {
+              return [0,1];
+            }
+            else if(a == "T" && b =="T")
+            {
+               return [1,0];
+            }
+            else if(a == "F" && b =="T")
+            {
+               return [0,1];
+            }
+            else
+            {
+               return [0,1];
+            }
+        }
+        else
+        {
+            if(a == "T" && b =="F")
+            {
+              return [1,0];
+            }
+            else if(a == "T" && b =="T")
+            {
+               return [1,0];
+            }
+            else if(a == "F" && b =="T")
+            {
+               return [1,0];
+            }
+            else
+            {
+               return [0,1];
+            }
+        }
+
+      }
       
       let number_of_ways_to_be_true = 0;
       
       let number_of_ways_to_be_false = 0;
       
-      for(let k=start; k < end-1; k+2)
+      for(let k=start; k < end-1; k = k+2)
       {
           
           let res1 = this.solve(S, n, start, k);
