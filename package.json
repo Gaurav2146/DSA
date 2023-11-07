@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "ts-node ./DP/Partitions_with_GivenDifference.ts"
+    "start": "ts-node ./DP/Minimum_Number_Of_Partitions_Required_To_Covert_String_To_Palindrome.ts"
   },
   "author": "",
   "license": "ISC",
@@ -15,4 +15,3 @@
     "@types/node": "^20.5.7"
   }
 }
-
