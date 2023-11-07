@@ -1,4 +1,4 @@
-function minimumDifference(nums: number[]): number {
+function MinimumDifference(nums: number[]): number {
 
     if(nums.length == 2)
     {
