@@ -1,4 +1,4 @@
-//YOU WILL BE GIVEN EDGES FOR DIRECTED GRAPH IN THE INPUT.
+//YOU WILL BE GIVEN EDGES FOR UNDIRECTED OR DIRECTED GRAPH IN THE INPUT.
 //YOU HAVE TO FIND THAT IF THE GRAPH FORMED IS BIPARTIDE OR NOT.
 
 //THE QUESTION CAN ALSO BE IN THE THE FORM THAT IS IT POSSIBLR TO DIVIDE THESE PEOPLE IN DIFFERENT GROUP.
@@ -124,7 +124,7 @@ let checkIfGraphIsBipartile = new check_If_Graph_Is_Bipartile();
 checkIfGraphIsBipartile.create(1,2);
 checkIfGraphIsBipartile.create(1,7);
 checkIfGraphIsBipartile.create(3,6);
-checkIfGraphIsBipartile.create(7,8);
+checkIfGraphIsBipartile.create(4,8);
 checkIfGraphIsBipartile.create(9,10);
 
 console.log(  checkIfGraphIsBipartile.isBipartite() , "isBipartite" )
