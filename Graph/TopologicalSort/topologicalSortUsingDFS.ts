@@ -18,3 +18,97 @@
 //POP the stack and the result will be a valid topological sort.
 //===========================================================================================================
 
+
+class topologicalSortUsingDFS {
+
+    adjecencyList: Map<number, number[]>;
+    constructor() {
+        this.adjecencyList = new Map<number, number[]>();
+    }
+
+    create(u: number, v: number) {
+        if (this.adjecencyList.has(u)) {
+            let list = this.adjecencyList.get(u);
+            list.push(v);
+        }
+        else {
+            this.adjecencyList.set(u, [v]);
+        }
+    }
+
+    topologicalSort() {
+
+        let indegree = this.claculateIndegree();
+
+        console.log(indegree, "indegree");
+
+        let arrayWithZeroIndegree = [];
+
+        for (let [key, value] of indegree) {
+            if (value == 0)
+                arrayWithZeroIndegree.push(key);
+        }
+
+        console.log(arrayWithZeroIndegree, "arrayWithZeroIndegree");
+
+        let visisted = new Map<number, boolean>();
+
+        let stack: number[] = [];
+
+        for (let val of arrayWithZeroIndegree) {
+            visisted.set(val, true);
+            this.DFS(val, visisted, stack);
+            stack.push(val);
+        }
+
+        return stack;
+    }
+
+    DFS(node: number, visisted: Map<number, boolean>, stack: number[]) {
+        let adj = this.adjecencyList.get(node);
+        if (adj && adj.length > 0) {
+            for (let i = 0; i < adj.length; i++) {
+                if (visisted.has(adj[i]) == false) {
+                    visisted.set(adj[i], true);
+                    this.DFS(adj[i], visisted, stack);
+                    stack.push(adj[i]);
+                }
+            }
+        }
+    }
+
+    claculateIndegree() {
+        let indegree = new Map<number, number>();
+
+        for (let [key, value] of this.adjecencyList) {
+            //We are doing this to insert nodes with 0 indegree in the map
+            if (indegree.has(key) == false) {
+                indegree.set(key, 0);
+            }
+
+            for (let i = 0; i < value.length; i++) {
+                if (indegree.has(value[i])) {
+                    let val = indegree.get(value[i]);
+                    val++;
+                    indegree.set(value[i], val);
+                }
+                else {
+                    indegree.set(value[i], 1);
+                }
+            }
+        }
+        return indegree;
+    }
+}
+
+let topologicalSort = new topologicalSortUsingDFS();
+
+topologicalSort.create(1, 2);
+topologicalSort.create(2, 3);
+topologicalSort.create(3, 4);
+topologicalSort.create(4, 5);
+topologicalSort.create(1, 5);
+
+console.log(topologicalSort.adjecencyList, "Graph");
+
+console.log(topologicalSort.topologicalSort());

@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "ts-node ./Graph/CycleDetection/directedGraph.ts"
+    "start": "ts-node ./Graph/TopologicalSort/topologicalSortUsingDFS.ts"
   },
   "author": "",
   "license": "ISC",
