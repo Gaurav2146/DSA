@@ -87,7 +87,7 @@ class check_If_Graph_Is_Bipartile
         for(let [key,value] of this.adjecencyList)
         {
                let res = this.dfs(key);
-               
+
                if(res == false)
                {
                  return false;
@@ -105,17 +105,10 @@ class check_If_Graph_Is_Bipartile
       {
          for(let i=0; i < adjecent_nodes.length; i++)
          {
-
-            console.log("==============================================");
-            console.log("adjecent_nodes[i].colour == node.colour");
-            console.log(adjecent_nodes[i].colour + " == " + node.colour);
-            console.log("==============================================");
-
             if(adjecent_nodes[i].colour == node.colour)
             {
                 return false;
             }
-
          }
       }
 
@@ -126,11 +119,9 @@ class check_If_Graph_Is_Bipartile
 let checkIfGraphIsBipartile = new check_If_Graph_Is_Bipartile();
 
 checkIfGraphIsBipartile.create(1,2);
-checkIfGraphIsBipartile.create(1,4);
-checkIfGraphIsBipartile.create(2,6);
-checkIfGraphIsBipartile.create(7,8);
+checkIfGraphIsBipartile.create(1,7);
+checkIfGraphIsBipartile.create(3,6);
+checkIfGraphIsBipartile.create(4,8);
 checkIfGraphIsBipartile.create(9,10);
-
-// console.log(checkIfGraphIsBipartile.adjecencyList , "createAdjecencyList");
 
 console.log(  checkIfGraphIsBipartile.isBipartite() , "isBipartite" )
