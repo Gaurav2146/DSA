@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "ts-node ./Graph/TopologicalSort/topologicalSortUsingDFS.ts"
+    "start": "ts-node ./Graph/GraphColoring/check_If_Graph_Is_Bipartile.ts"
   },
   "author": "",
   "license": "ISC",
