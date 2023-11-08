@@ -19,10 +19,10 @@
 
 class CycleDetectionInDirectedGraph
 {
-    adjecencyList:Map<Number,Number[]>;
+    adjecencyList:Map<number,number[]>;
     constructor()
     {
-        this.adjecencyList = new Map<Number,Number[]>();
+        this.adjecencyList = new Map<number,number[]>();
     }
 
     create(u:number,v:number)
@@ -40,9 +40,35 @@ class CycleDetectionInDirectedGraph
 
     findCycle()
     {
+        let visisted = new Map<number,boolean>();
 
+        for(let[key,value] of this.adjecencyList)
+        {
+            if(visisted.has(key) == false)
+            {
+               visisted.set(key,true); 
+               this.dfs(key,visisted);
+               visisted.set(key,false);
+            }
+        }
     }
 
+    dfs(node:number , visisted:Map<Number,boolean>)
+    {
+            let adjecent_nodes = this.adjecencyList.get(node);
+
+            for(let i=0; i < adjecent_nodes.length; i++)
+            {
+                if(visisted.has(adjecent_nodes[i]) && visisted.get(adjecent_nodes[i]) == true)
+                {
+                    return true;
+                }
+ 
+                visisted.set(adjecent_nodes[i],true);
+                this.dfs(adjecent_nodes[i],visisted);
+                visisted.set(adjecent_nodes[i],true);
+            }
+    }
 }
 
 let cycleDetectionInDirectedGraph = new CycleDetectionInDirectedGraph();

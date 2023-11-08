@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "ts-node ./DP/Boolean_Parenthesization.ts"
+    "start": "ts-node ./Graph/CycleDetection/directedGraph.ts"
   },
   "author": "",
   "license": "ISC",
