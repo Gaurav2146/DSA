@@ -1,4 +1,4 @@
-//YOU WILL BE GIVEN EDGES FOR UNDIRECTED GRAPH IN THE INPUT.
+//YOU WILL BE GIVEN EDGES FOR DIRECTED GRAPH IN THE INPUT.
 //YOU HAVE TO FIND THAT IF THE GRAPH FORMED IS BIPARTIDE OR NOT.
 
 //THE QUESTION CAN ALSO BE IN THE THE FORM THAT IS IT POSSIBLR TO DIVIDE THESE PEOPLE IN DIFFERENT GROUP.
@@ -62,22 +62,22 @@ class check_If_Graph_Is_Bipartile
         if(this.adjecencyList.has(node_u))
         {
             let list = this.adjecencyList.get(node_u);
-            list.push(new GraphNode(v,Colour.RED));
+            list.push(node_v);
         }
         else
         {
-            this.adjecencyList.set(node_u,[new GraphNode(v,Colour.RED)]);
+            this.adjecencyList.set(node_u,[node_v]);
         }
 
         //create Edge from v to u
-        if(this.adjecencyList.has(node_v))
+        if(this.adjecencyList.has(node_u))
         {
             let list = this.adjecencyList.get(node_v);
-            list.push(new GraphNode(u,Colour.GREEN));
+            list.push(node_u);
         }
         else
         {
-            this.adjecencyList.set(node_v,[new GraphNode(u,Colour.GREEN)]);
+            this.adjecencyList.set(node_v,[node_u]);
         }
 
     }
