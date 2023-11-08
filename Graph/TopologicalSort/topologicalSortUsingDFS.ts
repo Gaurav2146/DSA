@@ -56,9 +56,12 @@ class topologicalSortUsingDFS {
         let stack: number[] = [];
 
         for (let val of arrayWithZeroIndegree) {
-            visisted.set(val, true);
-            this.DFS(val, visisted, stack);
-            stack.push(val);
+            if(visisted.has(val) == false)
+            {    
+                visisted.set(val, true);
+                this.DFS(val, visisted, stack);
+                stack.push(val);
+            }
         }
 
         return stack;
@@ -104,11 +107,11 @@ class topologicalSortUsingDFS {
 let topologicalSort = new topologicalSortUsingDFS();
 
 topologicalSort.create(1, 2);
-topologicalSort.create(2, 3);
+topologicalSort.create(3, 2);
 topologicalSort.create(3, 4);
 topologicalSort.create(4, 5);
 topologicalSort.create(1, 5);
 
 console.log(topologicalSort.adjecencyList, "Graph");
 
-console.log(topologicalSort.topologicalSort());
+console.log(topologicalSort.topologicalSort().reverse());
