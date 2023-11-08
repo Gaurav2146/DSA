@@ -16,3 +16,40 @@
 // 1. If we find any adjecent node which is already visited and is also present is DFS visited map then it's a cycle.
 // 2. If we find any adjecent node which is vsited but it is not present in DFS visited then we will ignore that node.
 //===========================================================================================================
+
+class CycleDetectionInDirectedGraph
+{
+    adjecencyList:Map<Number,Number[]>;
+    constructor()
+    {
+        this.adjecencyList = new Map<Number,Number[]>();
+    }
+
+    create(u:number,v:number)
+    {
+        if(this.adjecencyList.has(u))
+        {
+            let list = this.adjecencyList.get(u);
+            list.push(v);
+        }
+        else
+        {
+            this.adjecencyList.set(u,[v]);
+        }
+    }
+
+    findCycle()
+    {
+
+    }
+
+}
+
+let cycleDetectionInDirectedGraph = new CycleDetectionInDirectedGraph();
+
+cycleDetectionInDirectedGraph.create(1,2);
+cycleDetectionInDirectedGraph.create(2,3);
+cycleDetectionInDirectedGraph.create(3,4);
+cycleDetectionInDirectedGraph.create(4,1);
+
+console.log(cycleDetectionInDirectedGraph.adjecencyList , "Graph");
