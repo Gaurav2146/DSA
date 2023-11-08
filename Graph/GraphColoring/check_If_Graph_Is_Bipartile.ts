@@ -5,3 +5,91 @@
 //EACH INPUT WILL BE AN ARRAY OF SIZE 2 IN WHICH FIRST INDEX VALUE WILL BE FIRST PERSON AND SECOND INDEX VALUE
 //WILL BE SECOND PERSON.
 
+enum Colour{
+    RED,
+    GREEN
+}
+
+class GraphNode
+{
+    value:number;
+    colour:Colour;
+
+    constructor(value:number , colour:Colour)
+    {
+        this.value = value;
+        this.colour = colour;
+    }
+}
+
+class check_If_Graph_Is_Bipartile
+{
+    adjecencyList:Map<GraphNode,GraphNode[]>;
+    graphNodeToValueMap:Map<number,GraphNode>;
+
+    constructor()
+    {
+        this.adjecencyList = new Map<GraphNode,GraphNode[]>();
+        this.graphNodeToValueMap = new Map<number,GraphNode>();
+    }
+
+    create(u:number,v:number)
+    {
+        let node_u:GraphNode;
+        let node_v:GraphNode;
+
+        if(this.graphNodeToValueMap.has(u))
+        {
+            node_u = this.graphNodeToValueMap.get(u)
+        }
+        else
+        {
+            node_u = new GraphNode(u,Colour.GREEN);
+            this.graphNodeToValueMap.set(u,node_u);
+        }
+
+        if(this.graphNodeToValueMap.has(v))
+        {
+            node_v = this.graphNodeToValueMap.get(v)
+        }
+        else
+        {
+            node_v = new GraphNode(v,Colour.RED); 
+            this.graphNodeToValueMap.set(v,node_v);
+        }
+
+        //create Edge from u to v
+        if(this.adjecencyList.has(node_u))
+        {
+            let list = this.adjecencyList.get(node_u);
+            list.push(new GraphNode(v,Colour.RED));
+        }
+        else
+        {
+            this.adjecencyList.set(node_u,[new GraphNode(v,Colour.RED)]);
+        }
+
+        //create Edge from v to u
+        if(this.adjecencyList.has(node_v))
+        {
+            let list = this.adjecencyList.get(node_v);
+            list.push(new GraphNode(u,Colour.GREEN));
+        }
+        else
+        {
+            this.adjecencyList.set(node_v,[new GraphNode(u,Colour.GREEN)]);
+        }
+
+    }
+
+}
+
+let checkIfGraphIsBipartile = new check_If_Graph_Is_Bipartile();
+
+checkIfGraphIsBipartile.create(1,2);
+checkIfGraphIsBipartile.create(1,4);
+checkIfGraphIsBipartile.create(5,6);
+checkIfGraphIsBipartile.create(7,8);
+checkIfGraphIsBipartile.create(9,10);
+
+console.log(checkIfGraphIsBipartile.adjecencyList , "createAdjecencyList");
