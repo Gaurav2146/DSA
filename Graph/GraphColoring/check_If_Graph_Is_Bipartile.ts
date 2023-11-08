@@ -70,7 +70,7 @@ class check_If_Graph_Is_Bipartile
         }
 
         //create Edge from v to u
-        if(this.adjecencyList.has(node_u))
+        if(this.adjecencyList.has(node_v))
         {
             let list = this.adjecencyList.get(node_v);
             list.push(node_u);
