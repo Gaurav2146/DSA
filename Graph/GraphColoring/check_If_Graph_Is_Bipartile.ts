@@ -82,14 +82,55 @@ class check_If_Graph_Is_Bipartile
 
     }
 
+    isBipartite():boolean
+    {
+        for(let [key,value] of this.adjecencyList)
+        {
+               let res = this.dfs(key);
+               
+               if(res == false)
+               {
+                 return false;
+               }
+        }
+
+        return true;
+    }
+
+    dfs(node:GraphNode):boolean
+    {
+      let adjecent_nodes = this.adjecencyList.get(node);
+
+      if(adjecent_nodes && adjecent_nodes.length > 0)
+      {
+         for(let i=0; i < adjecent_nodes.length; i++)
+         {
+
+            console.log("==============================================");
+            console.log("adjecent_nodes[i].colour == node.colour");
+            console.log(adjecent_nodes[i].colour + " == " + node.colour);
+            console.log("==============================================");
+
+            if(adjecent_nodes[i].colour == node.colour)
+            {
+                return false;
+            }
+
+         }
+      }
+
+      return true;
+    }
 }
 
 let checkIfGraphIsBipartile = new check_If_Graph_Is_Bipartile();
 
 checkIfGraphIsBipartile.create(1,2);
 checkIfGraphIsBipartile.create(1,4);
-checkIfGraphIsBipartile.create(5,6);
+checkIfGraphIsBipartile.create(2,6);
 checkIfGraphIsBipartile.create(7,8);
 checkIfGraphIsBipartile.create(9,10);
 
-console.log(checkIfGraphIsBipartile.adjecencyList , "createAdjecencyList");
+// console.log(checkIfGraphIsBipartile.adjecencyList , "createAdjecencyList");
+
+console.log(  checkIfGraphIsBipartile.isBipartite() , "isBipartite" )
