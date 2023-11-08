@@ -38,7 +38,7 @@ class CycleDetectionInDirectedGraph
         }
     }
 
-    findCycle()
+    findCycle():boolean
     {
         let visisted = new Map<number,boolean>();
 
@@ -47,27 +47,44 @@ class CycleDetectionInDirectedGraph
             if(visisted.has(key) == false)
             {
                visisted.set(key,true); 
-               this.dfs(key,visisted);
+               let res = this.dfs(key,visisted);
                visisted.set(key,false);
+
+               if(res == true)
+               {
+                return res;
+               }
             }
         }
+
+        return false;
     }
 
-    dfs(node:number , visisted:Map<Number,boolean>)
+    dfs(node:number , visisted:Map<Number,boolean>):boolean
     {
             let adjecent_nodes = this.adjecencyList.get(node);
 
-            for(let i=0; i < adjecent_nodes.length; i++)
+            if(adjecent_nodes && adjecent_nodes.length > 0)
             {
-                if(visisted.has(adjecent_nodes[i]) && visisted.get(adjecent_nodes[i]) == true)
+                for(let i=0; i < adjecent_nodes.length; i++)
                 {
-                    return true;
+                    if(visisted.has(adjecent_nodes[i]) && visisted.get(adjecent_nodes[i]) == true)
+                    {
+                        return true;
+                    }
+     
+                    visisted.set(adjecent_nodes[i],true);
+                    let res = this.dfs(adjecent_nodes[i],visisted);
+                    visisted.set(adjecent_nodes[i],false);
+    
+                    if(res == true)
+                    {
+                        return res;
+                    }
                 }
- 
-                visisted.set(adjecent_nodes[i],true);
-                this.dfs(adjecent_nodes[i],visisted);
-                visisted.set(adjecent_nodes[i],true);
             }
+
+            return false;
     }
 }
 
@@ -76,6 +93,9 @@ let cycleDetectionInDirectedGraph = new CycleDetectionInDirectedGraph();
 cycleDetectionInDirectedGraph.create(1,2);
 cycleDetectionInDirectedGraph.create(2,3);
 cycleDetectionInDirectedGraph.create(3,4);
-cycleDetectionInDirectedGraph.create(4,1);
+cycleDetectionInDirectedGraph.create(4,5);
+cycleDetectionInDirectedGraph.create(1,5);
 
 console.log(cycleDetectionInDirectedGraph.adjecencyList , "Graph");
+
+console.log( cycleDetectionInDirectedGraph.findCycle());
