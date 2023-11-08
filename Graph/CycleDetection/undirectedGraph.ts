@@ -55,9 +55,9 @@ export class AdjecencyList {
             }
         }
     }
-
-
     datectCycle() {
+
+        
 
     }
 }
