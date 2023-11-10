@@ -32,7 +32,7 @@ class Kosaraju{
     {
         for(let i=0; i < this.adjecencyMetrix.length; i++)
         {
-            for(let j=0; j < this.adjecencyMetrix.length; j++)
+            for(let j=i+1; j < this.adjecencyMetrix.length; j++)
             {
                 let temp = this.adjecencyMetrix[i][j];
                 this.adjecencyMetrix[i][j] = this.adjecencyMetrix[j][i];
@@ -44,9 +44,6 @@ class Kosaraju{
     findStronglyConnectedComponents():number[][]
     {
         let vertices = this.findVerticesOfGraph();
-
-        console.log(vertices , "vertices");
-
         let visisted = new Array(this.size).fill(false);
         let stack = [];
 
@@ -61,8 +58,6 @@ class Kosaraju{
             } 
         }
 
-        console.log(stack , "stack");
-
         //Transposing the graph
         this.findTranspose();
 
@@ -72,24 +67,34 @@ class Kosaraju{
         let stronglyConnectedComponents:number[][] = [];
 
         //Do DFS Again on graph
-        // while(stack.length > 0)
-        // {
-          
+        while(stack.length > 0)
+        {
+            let components:number[] = [];
+            let element = stack.pop();
 
+            if(visisted[element]==false)
+            {
+                visisted[element] = true;
+                this.dfsAgain(element,visisted,components);
+            } 
 
-        // }
+            if(components.length > 0)
+            stronglyConnectedComponents.push(components);
+        }
 
         return stronglyConnectedComponents;
     }
 
-    dfsAgain(vertex:number,visisted:boolean[])
+    dfsAgain(vertex:number,visisted:boolean[],components:number[])
     {
+        components.push(vertex);
+
         for(let i=0; i < this.size; i++)
         {
             if(this.adjecencyMetrix[vertex][i] == 1 && visisted[i] == false)
             {
                 visisted[i]=true;
-                this.dfsAgain(i,visisted);
+                this.dfsAgain(i,visisted,components);
             }
         }
     }
@@ -137,6 +142,4 @@ kosaraju.addEdge(6,4);
 kosaraju.addEdge(4,7);
 kosaraju.addEdge(6,7);
 
-// console.log(kosaraju.adjecencyMetrix , "adjecency matrix");
-
-console.log(kosaraju.findStronglyConnectedComponents());
+console.log( "Strongly connected components are " , kosaraju.findStronglyConnectedComponents());
