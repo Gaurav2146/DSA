@@ -35,19 +35,20 @@ class ArticulationPoint_using_Tarjan_Algorithm
 
     addEdge(u: number, v: number) {
         this.adjecencyMetrix[u][v] = 1;
+        this.adjecencyMetrix[v][u] = 1;
     }
 
-    findStronglyConnectedComponents()
+    findArticulationPoints()
     {
-        let stronglyConnectedComponents:number[][] = [];
+        let articulationPoints:number[] = [];
         let low = new Array(this.size).fill(-1);
         let discovery = new Array(this.size).fill(-1);
-        let stack:number[] = [];
-        let stackFlag = new Array(this.size).fill(false);
+        let parent = new Array(this.size).fill(-1);
+      
         let vertex = this.findVerticesOfGraph();
         let src = vertex[0];
-        this.traverse(src,low,discovery,stack,stackFlag,0,stronglyConnectedComponents);
-        return stronglyConnectedComponents;
+        this.traverse(src,low,discovery,parent,0,articulationPoints);
+        return articulationPoints;
     }
 
     findVerticesOfGraph(): number[] {
@@ -58,32 +59,36 @@ class ArticulationPoint_using_Tarjan_Algorithm
         return vertices;
     }
 
-    traverse(vertex:number,low:number[],discovery:number[],stack:number[],stackFlag:boolean[],time:number,stronglyConnectedComponents:number[][])
+    traverse(vertex:number,low:number[],discovery:number[],parent:number[],time:number,articulationPoints:number[])
     {
        low[vertex] = time;
        discovery[vertex] = time;
-       stack.push(vertex);
-       stackFlag[vertex] = true;
+       
+
+       let child_count = 0;
 
        for(let i=0; i < this.size; i++)
        {
           if(this.adjecencyMetrix[vertex][i] == 1)
           {
-            //Cross Edge
-            if( discovery[i] != -1 && stackFlag[i] == false)
-            {
-                continue;
-            } 
             //Back edge
-            else if(discovery[i] != -1 && stackFlag[i] == true)
+            if(discovery[i] != -1 && parent[vertex] != i)
             {
                low[vertex] = Math.min(discovery[i],low[vertex]);
             }
             else if(discovery[i] == -1)
             {
-                this.traverse(i,low,discovery,stack,stackFlag,time+1,stronglyConnectedComponents);
-
+                child_count++;
+                parent[i] = vertex;
+                this.traverse(i,low,discovery,parent,time+1,articulationPoints);
                 low[vertex] = Math.min(low[vertex],low[i]);
+                
+
+                //Checking For second condition of Articulation point
+                if(low[i] > discovery[vertex] && low[vertex]!=discovery[vertex])
+                {
+                    articulationPoints.push(vertex);
+                }
             }
           }
        }
@@ -91,24 +96,10 @@ class ArticulationPoint_using_Tarjan_Algorithm
         //Current node is root node
         if(low[vertex] == discovery[vertex])
         {
-            console.log(vertex , "Root Node");
-            let component = [];
-
-            while( stack.length > 0 && stack[stack.length - 1] != vertex)
+            if(child_count > 1)
             {
-                let ele = stack.pop();
-                stackFlag[stack.length - 1] = false;
-                component.push(ele);
-            }
-
-            if(stack.length > 0)
-            {
-                let vertex_ele = stack.pop();
-                stackFlag[stack.length - 1] = false;
-                component.push(vertex_ele);
-            }
-
-            stronglyConnectedComponents.push(component);
+                articulationPoints.push(vertex);
+            } 
         } 
     }
 }
@@ -118,13 +109,9 @@ let tarjan_algo_for_articulation_point = new ArticulationPoint_using_Tarjan_Algo
 
 tarjan_algo_for_articulation_point.addEdge(0, 1);
 tarjan_algo_for_articulation_point.addEdge(1, 2);
-tarjan_algo_for_articulation_point.addEdge(2, 0);
-tarjan_algo_for_articulation_point.addEdge(2, 3);
+tarjan_algo_for_articulation_point.addEdge(0, 2);
+tarjan_algo_for_articulation_point.addEdge(0, 3);
 tarjan_algo_for_articulation_point.addEdge(3, 4);
-tarjan_algo_for_articulation_point.addEdge(4, 5);
-tarjan_algo_for_articulation_point.addEdge(5, 6);
-tarjan_algo_for_articulation_point.addEdge(6, 4);
-tarjan_algo_for_articulation_point.addEdge(4, 7);
-tarjan_algo_for_articulation_point.addEdge(6, 7);
+tarjan_algo_for_articulation_point.addEdge(3, 5);
 
-console.log("Strongly connected components are ", tarjan_algo_for_articulation_point.findStronglyConnectedComponents());
+console.log("Articulation Points are ", tarjan_algo_for_articulation_point.findArticulationPoints());
