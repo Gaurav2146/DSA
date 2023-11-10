@@ -26,6 +26,19 @@ class Kosaraju{
         this.adjecencyMetrix[u][u] = 1;
     }
 
+    findTranspose()
+    {
+        for(let i=0; i < this.adjecencyMetrix.length; i++)
+        {
+            for(let j=0; j < this.adjecencyMetrix.length; j++)
+            {
+                let temp = this.adjecencyMetrix[i][j];
+                this.adjecencyMetrix[i][j] = this.adjecencyMetrix[j][i];
+                this.adjecencyMetrix[j][i] = temp;
+            }
+        }
+    }
+
 }
 
 
