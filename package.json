@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "ts-node ./Graph/StronglyConnectedComponents/Tarjan.ts"
+    "start": "ts-node ./Graph/ArticulationPoint/ArticulationPoint_using_Tarjan_Algorithm.ts"
   },
   "author": "",
   "license": "ISC",
