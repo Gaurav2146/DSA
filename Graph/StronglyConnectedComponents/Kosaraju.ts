@@ -7,33 +7,27 @@
 //4. while returning from node, push the node in an array which will keep track of connected components.
 //========================================================================================================
 
-class Kosaraju{
+class Kosaraju {
 
-    adjecencyMetrix:number[][];
-    size:number;
+    adjecencyMetrix: number[][];
+    size: number;
 
-    constructor(size:number)
-    {
+    constructor(size: number) {
         this.adjecencyMetrix = new Array(size);
         this.size = size;
 
-        for(let i=0; i < this.adjecencyMetrix.length; i++)
-        {
+        for (let i = 0; i < this.adjecencyMetrix.length; i++) {
             this.adjecencyMetrix[i] = new Array(size).fill(0);
         }
     }
 
-    addEdge(u:number,v:number)
-    {
+    addEdge(u: number, v: number) {
         this.adjecencyMetrix[u][v] = 1;
     }
 
-    findTranspose()
-    {
-        for(let i=0; i < this.adjecencyMetrix.length; i++)
-        {
-            for(let j=i+1; j < this.adjecencyMetrix.length; j++)
-            {
+    findTranspose() {
+        for (let i = 0; i < this.adjecencyMetrix.length; i++) {
+            for (let j = i + 1; j < this.adjecencyMetrix.length; j++) {
                 let temp = this.adjecencyMetrix[i][j];
                 this.adjecencyMetrix[i][j] = this.adjecencyMetrix[j][i];
                 this.adjecencyMetrix[j][i] = temp;
@@ -41,21 +35,18 @@ class Kosaraju{
         }
     }
 
-    findStronglyConnectedComponents():number[][]
-    {
+    findStronglyConnectedComponents(): number[][] {
         let vertices = this.findVerticesOfGraph();
         let visisted = new Array(this.size).fill(false);
         let stack = [];
 
         //Do DFS on graph
-        for(let i=0; i < vertices.length; i++)
-        {
-            if(visisted[i]==false)
-            {
+        for (let i = 0; i < vertices.length; i++) {
+            if (visisted[i] == false) {
                 visisted[i] = true;
-                this.dfs(i,visisted,stack);
+                this.dfs(i, visisted, stack);
                 stack.push(i);
-            } 
+            }
         }
 
         //Transposing the graph
@@ -64,82 +55,68 @@ class Kosaraju{
         // Reintializing visited array
         visisted = new Array(this.size).fill(false);
 
-        let stronglyConnectedComponents:number[][] = [];
+        let stronglyConnectedComponents: number[][] = [];
 
         //Do DFS Again on graph
-        while(stack.length > 0)
-        {
-            let components:number[] = [];
+        while (stack.length > 0) {
+            let components: number[] = [];
             let element = stack.pop();
 
-            if(visisted[element]==false)
-            {
+            if (visisted[element] == false) {
                 visisted[element] = true;
-                this.dfsAgain(element,visisted,components);
-            } 
+                this.dfsAgain(element, visisted, components);
+            }
 
-            if(components.length > 0)
-            stronglyConnectedComponents.push(components);
+            if (components.length > 0)
+                stronglyConnectedComponents.push(components);
         }
 
         return stronglyConnectedComponents;
     }
 
-    dfsAgain(vertex:number,visisted:boolean[],components:number[])
-    {
+    dfsAgain(vertex: number, visisted: boolean[], components: number[]) {
         components.push(vertex);
 
-        for(let i=0; i < this.size; i++)
-        {
-            if(this.adjecencyMetrix[vertex][i] == 1 && visisted[i] == false)
-            {
-                visisted[i]=true;
-                this.dfsAgain(i,visisted,components);
+        for (let i = 0; i < this.size; i++) {
+            if (this.adjecencyMetrix[vertex][i] == 1 && visisted[i] == false) {
+                visisted[i] = true;
+                this.dfsAgain(i, visisted, components);
             }
         }
     }
 
-    dfs(vertex:number,visisted:boolean[],stack:number[])
-    {
-        for(let i=0; i < this.size; i++)
-        {
-            if(this.adjecencyMetrix[vertex][i] == 1 && visisted[i] == false)
-            {
-                visisted[i]=true;
-                this.dfs(i,visisted,stack);
+    dfs(vertex: number, visisted: boolean[], stack: number[]) {
+        for (let i = 0; i < this.size; i++) {
+            if (this.adjecencyMetrix[vertex][i] == 1 && visisted[i] == false) {
+                visisted[i] = true;
+                this.dfs(i, visisted, stack);
                 stack.push(i);
             }
         }
     }
 
-    findVerticesOfGraph():number[]
-    {
+    findVerticesOfGraph(): number[] {
         let vertices = [];
 
-        for(let i=0; i < this.adjecencyMetrix.length; i++)
-        {
-           vertices.push(i);
+        for (let i = 0; i < this.adjecencyMetrix.length; i++) {
+            vertices.push(i);
         }
 
         return vertices;
     }
-
-
-
-
 }
 
 let kosaraju = new Kosaraju(8);
 
-kosaraju.addEdge(0,1);
-kosaraju.addEdge(1,2);
-kosaraju.addEdge(2,0);
-kosaraju.addEdge(2,3);
-kosaraju.addEdge(3,4);
-kosaraju.addEdge(4,5);
-kosaraju.addEdge(5,6);
-kosaraju.addEdge(6,4);
-kosaraju.addEdge(4,7);
-kosaraju.addEdge(6,7);
+kosaraju.addEdge(0, 1);
+kosaraju.addEdge(1, 2);
+kosaraju.addEdge(2, 0);
+kosaraju.addEdge(2, 3);
+kosaraju.addEdge(3, 4);
+kosaraju.addEdge(4, 5);
+kosaraju.addEdge(5, 6);
+kosaraju.addEdge(6, 4);
+kosaraju.addEdge(4, 7);
+kosaraju.addEdge(6, 7);
 
-console.log( "Strongly connected components are " , kosaraju.findStronglyConnectedComponents());
+console.log("Strongly connected components are ", kosaraju.findStronglyConnectedComponents());
