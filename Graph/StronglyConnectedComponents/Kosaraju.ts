@@ -23,7 +23,7 @@ class Kosaraju{
 
     addEdge(u:number,v:number)
     {
-        this.adjecencyMetrix[u][u] = 1;
+        this.adjecencyMetrix[u][v] = 1;
     }
 
     findTranspose()
@@ -41,10 +41,7 @@ class Kosaraju{
 
 }
 
-
 let kosaraju = new Kosaraju(8);
-
-console.log(kosaraju.adjecencyMetrix , "adjecency matrix");
 
 kosaraju.addEdge(0,1);
 kosaraju.addEdge(1,2);

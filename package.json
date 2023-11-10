@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "ts-node ./Graph/GraphColoring/check_If_Graph_Is_Bipartile.ts"
+    "start": "ts-node ./Graph/StronglyConnectedComponents/Kosaraju.ts"
   },
   "author": "",
   "license": "ISC",
