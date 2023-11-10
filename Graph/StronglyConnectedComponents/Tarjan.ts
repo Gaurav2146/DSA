@@ -15,3 +15,11 @@
 //    root then the Node should have more than one child. i.e number of adjecent node should be greater
 //    than 1.
 //========================================================================================================
+
+class Tarjan
+{
+
+    
+
+
+}

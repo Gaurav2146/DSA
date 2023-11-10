@@ -7,3 +7,41 @@
 //4. while returning from node, push the node in an array which will keep track of connected components.
 //========================================================================================================
 
+class Kosaraju{
+
+    adjecencyMetrix:number[][];
+
+    constructor(size:number)
+    {
+        this.adjecencyMetrix = new Array(size);
+
+        for(let i=0; i < this.adjecencyMetrix.length; i++)
+        {
+            this.adjecencyMetrix[i] = new Array(size).fill(0);
+        }
+    }
+
+    addEdge(u:number,v:number)
+    {
+        this.adjecencyMetrix[u][u] = 1;
+    }
+
+}
+
+
+let kosaraju = new Kosaraju(8);
+
+console.log(kosaraju.adjecencyMetrix , "adjecency matrix");
+
+kosaraju.addEdge(0,1);
+kosaraju.addEdge(1,2);
+kosaraju.addEdge(2,0);
+kosaraju.addEdge(2,3);
+kosaraju.addEdge(3,4);
+kosaraju.addEdge(4,5);
+kosaraju.addEdge(5,6);
+kosaraju.addEdge(6,4);
+kosaraju.addEdge(4,7);
+kosaraju.addEdge(6,7);
+
+console.log(kosaraju.adjecencyMetrix , "adjecency matrix");
