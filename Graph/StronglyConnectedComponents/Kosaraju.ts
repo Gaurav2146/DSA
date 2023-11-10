@@ -10,10 +10,12 @@
 class Kosaraju{
 
     adjecencyMetrix:number[][];
+    size:number;
 
     constructor(size:number)
     {
         this.adjecencyMetrix = new Array(size);
+        this.size = size;
 
         for(let i=0; i < this.adjecencyMetrix.length; i++)
         {
@@ -39,6 +41,87 @@ class Kosaraju{
         }
     }
 
+    findStronglyConnectedComponents():number[][]
+    {
+        let vertices = this.findVerticesOfGraph();
+
+        console.log(vertices , "vertices");
+
+        let visisted = new Array(this.size).fill(false);
+        let stack = [];
+
+        //Do DFS on graph
+        for(let i=0; i < vertices.length; i++)
+        {
+            if(visisted[i]==false)
+            {
+                visisted[i] = true;
+                this.dfs(i,visisted,stack);
+                stack.push(i);
+            } 
+        }
+
+        console.log(stack , "stack");
+
+        //Transposing the graph
+        this.findTranspose();
+
+        // Reintializing visited array
+        visisted = new Array(this.size).fill(false);
+
+        let stronglyConnectedComponents:number[][] = [];
+
+        //Do DFS Again on graph
+        // while(stack.length > 0)
+        // {
+          
+
+
+        // }
+
+        return stronglyConnectedComponents;
+    }
+
+    dfsAgain(vertex:number,visisted:boolean[])
+    {
+        for(let i=0; i < this.size; i++)
+        {
+            if(this.adjecencyMetrix[vertex][i] == 1 && visisted[i] == false)
+            {
+                visisted[i]=true;
+                this.dfsAgain(i,visisted);
+            }
+        }
+    }
+
+    dfs(vertex:number,visisted:boolean[],stack:number[])
+    {
+        for(let i=0; i < this.size; i++)
+        {
+            if(this.adjecencyMetrix[vertex][i] == 1 && visisted[i] == false)
+            {
+                visisted[i]=true;
+                this.dfs(i,visisted,stack);
+                stack.push(i);
+            }
+        }
+    }
+
+    findVerticesOfGraph():number[]
+    {
+        let vertices = [];
+
+        for(let i=0; i < this.adjecencyMetrix.length; i++)
+        {
+           vertices.push(i);
+        }
+
+        return vertices;
+    }
+
+
+
+
 }
 
 let kosaraju = new Kosaraju(8);
@@ -54,4 +137,6 @@ kosaraju.addEdge(6,4);
 kosaraju.addEdge(4,7);
 kosaraju.addEdge(6,7);
 
-console.log(kosaraju.adjecencyMetrix , "adjecency matrix");
+// console.log(kosaraju.adjecencyMetrix , "adjecency matrix");
+
+console.log(kosaraju.findStronglyConnectedComponents());
